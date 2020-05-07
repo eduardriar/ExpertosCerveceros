@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useEffect} from 'react';
+import SplashScreen from 'react-native-splash-screen'
 import {
   SafeAreaView,
   ScrollView,
@@ -17,7 +18,11 @@ import {
 
 import styles from './AppStyles';
 
-const App: () => React$Node = () => {
+const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+  
   return (
     <>
       <StatusBar barStyle="dark-content" />
