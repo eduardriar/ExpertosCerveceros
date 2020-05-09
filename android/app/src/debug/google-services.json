@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "451315578686",
+    "firebase_url": "https://expertoscerveceros-7729a.firebaseio.com",
+    "project_id": "expertoscerveceros-7729a",
+    "storage_bucket": "expertoscerveceros-7729a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451315578686:android:830ffa23226740b4159e6f",
+        "android_client_info": {
+          "package_name": "com.expertoscerveceros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451315578686-a5oa332qcmindcl6c4i4rl9m3u8d42k2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.expertoscerveceros",
+            "certificate_hash": "29bf0589e0b31feee549c0a5773c32af4385562e"
+          }
+        },
+        {
+          "client_id": "451315578686-mqhr8bifu6m3f7njtcat4vpkeiqcemj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALfElufKYNbewq8HBKAxnIlcvd7-jTJO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451315578686-mqhr8bifu6m3f7njtcat4vpkeiqcemj1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

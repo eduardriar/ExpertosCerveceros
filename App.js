@@ -10,6 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Search from './Components/Search'
 import Profile from './Components/Profile'
 import Premium from './Components/Premium'
+import Login from './components/Login/Login.js';
 
 function HomeScreen({ navigation }) {
   return (
@@ -28,11 +29,11 @@ function SearchScreen() {
 }
 
 function PremiumScreen() {
-  return(<Premium/>)
+  return (<Premium />)
 }
 
 function ProfileScreen() {
-  return(<Profile/>)
+  return (<Profile />)
 }
 
 const Tab = createMaterialBottomTabNavigator();
@@ -45,6 +46,9 @@ function App() {
 
   return (
     <NavigationContainer>
+      {/* <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator> */}
       <Tab.Navigator
         initialRouteName="Home"
         activeColor="#EC40F0"
@@ -65,14 +69,14 @@ function App() {
               <MaterialCommunityIcons name="magnify" color={'#EC40F0'} size={26} />
             ),
           }} />
-          <Tab.Screen name="Premium" component={PremiumScreen}
+        <Tab.Screen name="Premium" component={PremiumScreen}
           options={{
             tabBarLabel: 'Premium',
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="star" color={'#EC40F0'} size={26} />
             ),
           }} />
-          <Tab.Screen name="Profile" component={ProfileScreen}
+        <Tab.Screen name="Profile" component={ProfileScreen}
           options={{
             tabBarLabel: 'Profile',
             tabBarIcon: ({ color }) => (
