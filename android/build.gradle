@@ -6,14 +6,21 @@ buildscript {
         minSdkVersion = 16
         compileSdkVersion = 28
         targetSdkVersion = 28
+        googlePlayServicesAuthVersion = "16.0.1"
     }
     repositories {
-        google()
         jcenter()
+        google()
     }
+<<<<<<< HEAD
     dependencies {  
         classpath("com.android.tools.build:gradle:3.5.3")
 
+=======
+    dependencies {
+        classpath('com.android.tools.build:gradle:3.5.3')
+        classpath 'com.google.gms:google-services:4.3.3'
+>>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
