@@ -46,6 +46,7 @@ function App() {
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
@@ -90,6 +91,8 @@ function App() {
       </SafeAreaView>
     </>
 =======
+=======
+>>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
     <NavigationContainer>
       {/* <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
@@ -130,6 +133,9 @@ function App() {
           }} />
       </Tab.Navigator>
     </NavigationContainer>
+<<<<<<< HEAD
+>>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
+=======
 >>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
   );
 }

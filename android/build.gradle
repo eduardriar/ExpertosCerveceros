@@ -13,9 +13,15 @@ buildscript {
         google()
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     dependencies {  
         classpath("com.android.tools.build:gradle:3.5.3")
 
+=======
+    dependencies {
+        classpath('com.android.tools.build:gradle:3.5.3')
+        classpath 'com.google.gms:google-services:4.3.3'
+>>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
 =======
     dependencies {
         classpath('com.android.tools.build:gradle:3.5.3')
