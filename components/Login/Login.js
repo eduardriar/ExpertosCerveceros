@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {Component} from 'react';
 import {
     StyleSheet,
@@ -33,6 +34,10 @@ class LogIn extends Component {
     this.configureGoogleSign()
   }
 
+  componentWillMountMount(){
+    console.log('Hola')
+  }
+
   configureGoogleSign() {
     Alert.alert('ejecutando config..')
     GoogleSignin.configure({
@@ -44,10 +49,12 @@ class LogIn extends Component {
   signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
+      console.log(this.props)
       const userInfo = await GoogleSignin.signIn();
       console.log(userInfo.user.email);
-      Alert.alert('hpta sirvio')
-      this.setState({ userInfo });
+      Alert.alert('Ingreso Exitoso');
+      this.setState({ userInfo });      
+      
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
