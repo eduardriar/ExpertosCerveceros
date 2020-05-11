@@ -10,7 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Search from './Components/Search'
 import Profile from './Components/Profile'
 import Premium from './Components/Premium'
-import Login from './components/Login/Login.js';
+import Login from './Components/Login/Login.js';
 
 function HomeScreen({ navigation }) {
   return (
@@ -45,54 +45,6 @@ function App() {
   }, []);
 
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: ECRA</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step Uno</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-=======
-=======
->>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
     <NavigationContainer>
       {/* <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
@@ -133,10 +85,6 @@ function App() {
           }} />
       </Tab.Navigator>
     </NavigationContainer>
-<<<<<<< HEAD
->>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
-=======
->>>>>>> 0f921a17516e8b517773d91e9354acbedc6b3168
   );
 }
 
