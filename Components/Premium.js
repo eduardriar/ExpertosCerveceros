@@ -56,7 +56,7 @@ onPress=(event)=>{
 
   
     if (event==="Conciertos"){
-      console.log("entra")
+     
       this.setState({
         ev1:{sectionTitle:"Conciertos",sectionDescription:"Nuestros territorios son rockeros y cerveceros, por eso nos amas.",place:"Lugar: Territorios pub beer",imageRoute:"",registered:true}
       })
