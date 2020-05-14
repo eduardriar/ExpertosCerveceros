@@ -1,15 +1,11 @@
 import React from 'react'
 import {
-    StyleSheet,
-    ScrollView,
+ 
     View,
     Text,
-    TextInput,
-    Image,
     Dimensions,
-    TouchableOpacity,
-    Alert,
-    Button
+    Button,
+    ImageBackground
 } from 'react-native';
 import styles from "./ContentStyle"
 const {width: WIDTH} = Dimensions.get('window');
@@ -34,7 +30,9 @@ export default function ContentCard(props) {
         <View style={styles.sectionContainer}>
            
             <View style={styles.contentContainer}>
-                <Image src={props.imageRoute}></Image>
+            <ImageBackground source={{ uri: props.imageRoute }} style={styles.img} imageStyle={{ borderRadius: 5}}>
+
+            </ImageBackground>
                 
                 <Button  large  disabled={props.registered} style={styles.button} title={bTitle} onPress={props.onPress}></Button>
             </View>

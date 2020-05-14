@@ -86,7 +86,12 @@ const styles = StyleSheet.create({
      marginBottom: 3,
      marginTop:3,
      color:"#42f5c5"
- }
+ },
+ img: {
+  width: WIDTH * 0.4,
+  height: WIDTH * 0.4,
+  margin: sizeW * 2,
+}
 
 });
 

@@ -19,14 +19,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     flex: 1,
     marginTop: 10,
-    borderRadius:20
-      
+    borderRadius:20,
+  
       },
       autocompleteContainer: {
         borderColor:Colors.white,
         backgroundColor: '#ffffff',
         borderRadius:50,
-        marginTop:20
+        marginTop:20,
+      
       },
     
       itemText: {
@@ -39,6 +40,27 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 16,
       },
+      label: {
+        fontSize: WIDTH * 0.035,
+        color: '#B7B7B7',
+        fontFamily: 'Raleway-SemiBold',
+        marginTop: HEIGHT * 0.005,
+      },
+      containerCards: {
+        marginTop: WIDTH * 0.1,
+        marginLeft: WIDTH * 0.05
+      },
+      gallery:{
+        flexDirection:"row",
+        flexWrap:"wrap"
+      },
+      titleText:{
+        fontSize: WIDTH * 0.05,
+        marginTop:10,
+    color: Colors.black,
+    fontFamily: 'Raleway-Black',
+    alignSelf: 'center'
+      }
 
 });
 
