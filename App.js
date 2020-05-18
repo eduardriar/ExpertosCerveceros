@@ -14,8 +14,17 @@ import Profile from './Components/Profile'
 import Home from './Components/Home/Home'
 import AsyncStorage from '@react-native-community/async-storage';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import Receipt from './Components/Home/Recetas'
 
 const Tab = createMaterialBottomTabNavigator();
+
+const HomeScreen = props => (
+  <Home {...props} />
+);
+
+const ReceiptScreen = props =>(
+  <Receipt {...props}/>
+);
 
 function HomeTab({ navigation }) {
   return (
@@ -31,7 +40,8 @@ function HomeTab({ navigation }) {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={'#EC40F0'} size={26} />
           ),
-        }} />
+        }}>
+      </Tab.Screen>
       <Tab.Screen name="Search" component={SearchScreen}
         options={{
           tabBarLabel: 'Search',
@@ -57,9 +67,6 @@ function HomeTab({ navigation }) {
   );
 }
 
-function HomeScreen() {
-  return (<Home />)
-}
 
 function SearchScreen() {
   return (<Search />)
@@ -76,6 +83,7 @@ function ProfileScreen() {
 function LoginScreen() {
   return (<Login />)
 }
+
 
 const Stack = createStackNavigator();
 
@@ -111,6 +119,7 @@ function App() {
   );
 
   React.useEffect(() => {
+    SplashScreen.hide();
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userInfo;
@@ -162,10 +171,6 @@ function App() {
     []
   );
 
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
   const AuthContext = React.createContext();
 
   return (
@@ -176,9 +181,15 @@ function App() {
           headerShown: false
         }}>
           {state.userName == null ? (
-            <Stack.Screen name="Login" component={LoginScreen}/>
+            <Stack.Screen name="Login">
+              {props => <LoginScreen {...props} />}
+            </Stack.Screen>
           ) : (
-              <Stack.Screen name="Home" component={HomeTab} />
+              <>
+                <Stack.Screen name="Home" component={HomeTab} />
+                {console.log(this.props)}
+                <Stack.Screen name="Receipt" component={ReceiptScreen}/>
+              </>
             )}
         </Stack.Navigator>
       </NavigationContainer>

@@ -18,15 +18,22 @@ const HEIGHT = Dimensions.get('window').height;
 const sizeH = HEIGHT / 100;
 const sizeW = WIDTH / 100;
 
+function navCards(route, navigation, object ) { 
+  var params = JSON.stringify(object) 
+  navigation.navigation.navigate(route, {object})
+}
+
 class Item extends Component {
 
   render() {
     return (
-      <ImageBackground source={{ uri: this.props.img }} style={styles.img} imageStyle={{ borderRadius: WIDTH * 0.05}}>
-        <TouchableOpacity style={styles.card} onPress={() => console.log(this.props.id)} >
-          <MaterialCommunityIcons name="cart" color={'#FFFFFF'} size={26} />
-        </TouchableOpacity>
-      </ImageBackground>
+      <TouchableOpacity onPress={() => navCards(this.props.to,this.props.nav, this.props.object)}>
+        <ImageBackground source={{ uri: this.props.object.image }} style={styles.img} imageStyle={{ borderRadius: WIDTH * 0.05 }}>
+          <TouchableOpacity style={styles.card} onPress={() => console.log(this.props.object.id)} >
+            <MaterialCommunityIcons name="cart" color={'#FFFFFF'} size={26} />
+          </TouchableOpacity>
+        </ImageBackground>
+      </TouchableOpacity>
     );
   }
 }

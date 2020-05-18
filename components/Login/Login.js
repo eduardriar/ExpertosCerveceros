@@ -20,6 +20,8 @@ import {
 import { WEB_CLIENT_ID } from '../../instances/Keys.js'
 import AsyncStorage from '@react-native-community/async-storage';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+// import {AuthContext} from '../../App'
+
 const { width: WIDTH } = Dimensions.get('window');
 const { height: HEIGHT } = Dimensions.get('window');
 const sizeH = HEIGHT / 100;
@@ -54,13 +56,14 @@ class LogIn extends Component {
     }
   }
 
-  signIn = async () => {
+  signInGoogle = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       console.log(userInfo.user);
       Alert.alert('Bienvenido a Expertos Cerveceros');
-      this.setState({ userInfo });      
+      this.setState({ userInfo });   
+      //
       this.storeData()
 
     } catch (error) {
@@ -85,6 +88,8 @@ class LogIn extends Component {
   };
 
   render() {
+    // const AuthContext = React.createContext();
+    // const {signIn} = React.useContext(AuthContext)
     return (
       <View style={styles.loginContainer}>
         <View style={styles.textView}>
@@ -100,7 +105,7 @@ class LogIn extends Component {
             style={styles.GoogleButton}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Light}
-            onPress={() => this.signIn(this.props.navigation)}
+            onPress={() => this.signInGoogle().then(() => this.signIn(this.state) )}
             disabled={this.state.isSigninInProgress} />
         </ScrollView>
       </View>
