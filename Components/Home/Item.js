@@ -8,11 +8,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Premium from '../Premium';
-import Profile from '../Profile';
-import { ScrollView } from 'react-native-gesture-handler';
-import Salchicha from '../../assets/Images/SalchicaALaCerveza.png'
-
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const sizeH = HEIGHT / 100;
@@ -27,7 +22,7 @@ class Item extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={() => navCards(this.props.to,this.props.nav, this.props.object)}>
+      <TouchableOpacity onPress={() => navCards(this.props.to,this.props.nav, this.props.object)} style={styles.card}>
         <ImageBackground source={{ uri: this.props.object.image }} style={styles.img} imageStyle={{ borderRadius: WIDTH * 0.05 }}>
           <TouchableOpacity style={styles.card} onPress={() => console.log(this.props.object.id)} >
             <MaterialCommunityIcons name="cart" color={'#FFFFFF'} size={26} />
@@ -43,12 +38,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignSelf: 'flex-end',
-    margin: sizeW * 2
+    margin: sizeW * 2,
+    elevation: 10,
   },
   img: {
-    width: WIDTH * 0.4,
-    height: WIDTH * 0.4,
-    margin: sizeW * 2,
+    width: sizeH * 18,
+    height: sizeH * 18,
   }
 });
 

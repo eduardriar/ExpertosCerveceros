@@ -7,9 +7,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import Premium from '../Premium';
-import Profile from '../Profile';
 import styles from './HomeStyle';
 import Item from './Item';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -43,10 +40,6 @@ class Home extends Component {
     this.state = {
       enableScrollViewScroll: true,
     };
-  }
-
-  componentDidMount(){
-    console.log(this.props)
   }
 
   onEnableScroll = (value) => {

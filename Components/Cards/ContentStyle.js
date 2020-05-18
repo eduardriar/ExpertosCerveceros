@@ -1,5 +1,7 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
 
-import {Platform,Dimensions,StyleSheet,} from 'react-native'
+import { Platform, Dimensions, StyleSheet, } from 'react-native'
 import {
   Header,
   LearnMoreLinks,
@@ -25,21 +27,21 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: Colors.white,
   },
-  mainContainer:{
-      flex:4,
-      flexDirection:"column",
-      
-      backgroundColor:"#3e403c"
+  mainContainer: {
+    flex: 4,
+    flexDirection: "column",
+    backgroundColor: "#CC493A"
   },
   sectionContainer: {
-   
-    flex:1,
-    flexDirection:"row",
-    marginBottom:20,
-    marginLeft:10,
-    marginRight:10,
-    backgroundColor:Colors.white,
-    borderRadius:20
+    elevation: 10,
+    flex: 1,
+    flexDirection: "row",
+    alignSelf:'center',
+    width: sizeW * 95,
+    marginTop: sizeW * 2.5,
+    marginBottom: sizeW * 2.5,
+    backgroundColor: Colors.white,
+    borderRadius: 20,
   },
   sectionTitle: {
     fontSize: 24,
@@ -47,13 +49,12 @@ const styles = StyleSheet.create({
     color: Colors.black,
     fontFamily: 'Jost-Black'
   },
-  principalTitle: {
-    fontSize: 26,
-    fontWeight: '600',
+  titleText: {
+    fontSize: WIDTH * 0.1,
     color: Colors.white,
-    fontFamily: 'Jost-BoldItalic',
-    textAlign:"center",
-    marginBottom:10
+    fontFamily: 'Satisfy-Regular',
+    marginTop: sizeH * 2.5,
+    alignSelf: 'center'
   },
   sectionDescription: {
     marginTop: 8,
@@ -72,27 +73,35 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
-  contentContainer:{
-    flex:0.45,
-    flexDirection:"column",
-    alignItems:"center",
-    marginLeft:2,
-    marginBottom:5,
-    marginTop:5  
+  contentContainer: {
+    flex: 0.45,
+    flexDirection: "column",
+    alignItems: "center",
+    marginLeft: 2,
+    marginBottom: 5,
+    marginTop: 5
   },
- button:{
-     borderRadius:50,
-     flex:0.2,
-     marginBottom: 3,
-     marginTop:3,
-     color:"#42f5c5"
- },
- img: {
-  width: WIDTH * 0.4,
-  height: WIDTH * 0.4,
-  margin: sizeW * 2,
-}
-
+  button: {
+    borderRadius: sizeW* 2,
+    flex: 0.2,
+    alignSelf:'center',
+    marginTop: sizeH * 2.5,
+    backgroundColor: "#39CC7F",
+    width: sizeW * 30,
+    height: sizeH * 4,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  buttonText:{    
+    fontSize: sizeH * 2,
+    color: Colors.white,
+    fontFamily: 'Jost-Light',
+  },
+  img: {
+    width: sizeH * 17,
+    height: sizeH * 17,
+    margin: sizeW * 2,
+  }
 });
 
 export default styles

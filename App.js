@@ -10,10 +10,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Login from './Components/Login/Login'
 import Search from './Components/Search/Search'
 import Premium from './Components/Premium'
-import Profile from './Components/Profile'
+import Profile from './Components/Profile/Profile'
 import Home from './Components/Home/Home'
 import AsyncStorage from '@react-native-community/async-storage';
-import { Header } from 'react-native/Libraries/NewAppScreen';
 import Receipt from './Components/Home/Recetas'
 
 const Tab = createMaterialBottomTabNavigator();
@@ -24,6 +23,14 @@ const HomeScreen = props => (
 
 const ReceiptScreen = props =>(
   <Receipt {...props}/>
+);
+
+const ProfileScreen = props => (
+  <Profile {...props} />
+);
+
+const SearchScreen = props => (
+  <Search {...props}/>
 );
 
 function HomeTab({ navigation }) {
@@ -67,23 +74,13 @@ function HomeTab({ navigation }) {
   );
 }
 
-
-function SearchScreen() {
-  return (<Search />)
-}
-
 function PremiumScreen() {
   return (<Premium />)
-}
-
-function ProfileScreen() {
-  return (<Profile />)
 }
 
 function LoginScreen() {
   return (<Login />)
 }
-
 
 const Stack = createStackNavigator();
 
@@ -187,7 +184,6 @@ function App() {
           ) : (
               <>
                 <Stack.Screen name="Home" component={HomeTab} />
-                {console.log(this.props)}
                 <Stack.Screen name="Receipt" component={ReceiptScreen}/>
               </>
             )}
