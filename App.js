@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Login from './Components/Login/Login'
-import Search from './Components/Search'
+import Search from './Components/Search/Search'
 import Premium from './Components/Premium'
 import Profile from './Components/Profile'
 import Home from './Components/Home/Home'
@@ -27,7 +27,7 @@ const ReceiptScreen = props =>(
 );
 
 function HomeTab({ navigation }) {
-  return (
+  return(
     <Tab.Navigator
       initialRouteName="Start"
       activeColor="#EC40F0"
