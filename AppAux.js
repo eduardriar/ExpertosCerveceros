@@ -17,7 +17,7 @@ import {
 
 import styles from './AppStyles';
 
-const App: () => React$Node = () => {
+const App: () => React$Node = () => {  
   return (
     <>
       <StatusBar barStyle="dark-content" />
