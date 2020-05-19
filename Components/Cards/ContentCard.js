@@ -21,6 +21,10 @@ export default function ContentCard(props) {
   } else {
     bTitle = 'Registrate';
   }
+  function getRandom(){
+    var RandomNumber = Math.floor(Math.random() * 50000) + 10000 ;
+    return RandomNumber
+  }
 
   return (
     <View style={styles.sectionContainer}>
@@ -37,12 +41,8 @@ export default function ContentCard(props) {
           {props.sectionDescription}
         </Text>
         <Text style={styles.sectionDescription}>{props.place}</Text>
-        <TouchableOpacity
-          disabled={props.registered}
-          style={styles.button}
-          onPress={props.onPress}>
-          <Text style={styles.buttonText}>{bTitle}</Text>
-        </TouchableOpacity>
+        <Text style={styles.sectionDescription}>{'c/u  $' + getRandom()}</Text>
+        <Text style={styles.sectionDescription}>{'Total  $' + getRandom() * props.place}</Text>
       </View>
     </View>
   );

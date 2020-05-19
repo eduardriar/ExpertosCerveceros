@@ -67,7 +67,7 @@ class LogIn extends Component {
       Alert.alert('Bienvenido a Expertos Cerveceros');
       this.setState({ userInfo });   
       //
-      this.storeData()
+      //this.storeData()
 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {

@@ -1,12 +1,13 @@
 /* eslint-disable prettier/prettier */
 
 import React, { useEffect, Component } from 'react';
-import { View, Text, Button, FlatList, TouchableOpacity, ImageBackground, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Button, FlatList, TouchableOpacity, ImageBackground, StyleSheet, Dimensions, Alert } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -18,13 +19,76 @@ function navCards(route, navigation, object ) {
   navigation.navigation.navigate(route, {object})
 }
 
+
+
 class Item extends Component {
+  addItem = async (newshopping) => {
+    try {
+      await AsyncStorage.setItem('shopping',newshopping)   
+      console.log(newshopping)
+      Alert.alert("Unidad agregada exitosamente");   
+    } catch (e) {
+      console.log("error adding item store")
+    }
+  }
+
+  addShopping = async (product) => {
+    try {
+      const shopping = await AsyncStorage.getItem('shopping');
+      //shoppingC = JSON.parse(shopping)
+
+      if(shopping !== null && shopping.length > 0)
+      {
+
+        var shoppingC = JSON.parse(shopping)
+        var newshopping;
+        if(shoppingC.filter(dpa => dpa.id === product.id).length > 0)
+        {
+          Alert.alert(
+            '',
+            'El producto ya existe en el carrito, desea agregar otra unidad',
+            [
+                { text: 'Aceptar', onPress: () => {
+                  newshopping = JSON.stringify(shoppingC.filter(dpa => dpa.id !== product.id && dpa["0"] !== "[").concat({...product, cantidad:
+                    shoppingC.filter(dpa => dpa.id === product.id && dpa["0"] !== "[")[0].cantidad + 1}));
+                  this.addItem(newshopping)
+                }},
+            ],
+            { cancelable: false },
+          );
+          //await AsyncStorage.setItem('shopping',newshopping)
+        }
+        else
+        {
+          try {
+            newshopping = JSON.stringify(shoppingC.concat({...product, cantidad:1}))
+            console.log(newshopping)
+            await AsyncStorage.setItem('shopping',newshopping)     
+            Alert.alert("Unidad agregada exitosamente"); 
+          } catch (e) {
+            console.log("error adding item store")
+          }
+        }
+      }
+      else
+      {
+        var newshopping = [];
+        const addSho = JSON.stringify(newshopping.concat({...product, cantidad:1}));
+        console.log(addSho)
+        await AsyncStorage.setItem('shopping',addSho) 
+        Alert.alert("Unidad agregada exitosamente");
+      }
+    } catch (e) {
+      console.log("error getting item store " + e )
+    }
+    //AsyncStorage.removeItem('shopping')
+  }
 
   render() {
     return (
       <TouchableOpacity onPress={() => navCards(this.props.to,this.props.nav, this.props.object)} style={styles.card}>
         <ImageBackground source={{ uri: this.props.object.image }} style={styles.img} imageStyle={{ borderRadius: WIDTH * 0.05 }}>
-          <TouchableOpacity style={styles.card} onPress={() => console.log(this.props.object.id)} >
+          <TouchableOpacity style={styles.card} onPress={() => this.addShopping(this.props.object)} >
             <MaterialCommunityIcons name="cart" color={'#FFFFFF'} size={26} />
           </TouchableOpacity>
         </ImageBackground>

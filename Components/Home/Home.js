@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import React, { useEffect, Component } from 'react';
-import { View, Text, Button, FlatList, SafeAreaView, Image, Dimensions } from 'react-native';
+import { View, Text, Button, FlatList, SafeAreaView, Image, Dimensions,Alert } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -102,7 +102,7 @@ class Home extends Component {
             <View style={styles.containerCards}>
               <Text style={styles.label}>RECETAS POPULARES</Text>
               <FlatList
-                style={{ marginTop: HEIGHT * 0.03 }}
+                style={{ marginTop: HEIGHT * 0.03, backgroundColor:'black' }}
                 horizontal={false}
                 numColumns={'2'}
                 data={recetas}

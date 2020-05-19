@@ -7,13 +7,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from './Components/Login/Login'
-import Search from './Components/Search/Search'
-import Premium from './Components/Premium'
-import Profile from './Components/Profile/Profile'
-import Home from './Components/Home/Home'
+import Login from './components/Login/Login.js'
+import Search from './components/Search/Search'
+import Premium from './components/ShoppingCart/ShoppingCart.js'
+import Profile from './components/Profile/Profile'
+import Home from './components/Home/Home'
 import AsyncStorage from '@react-native-community/async-storage';
-import Receipt from './Components/Home/Recetas'
+import Receipt from './components/Home/Recetas'
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -58,9 +58,9 @@ function HomeTab({ navigation }) {
         }} />
       <Tab.Screen name="Premium" component={PremiumScreen}
         options={{
-          tabBarLabel: 'Premium',
+          tabBarLabel: 'Compras',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="star" color={'#EC40F0'} size={26} />
+            <MaterialCommunityIcons name="cart" color={'#EC40F0'} size={26} />
           ),
         }} />
       <Tab.Screen name="Profile" component={ProfileScreen}

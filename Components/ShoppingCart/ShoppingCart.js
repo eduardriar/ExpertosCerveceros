@@ -2,12 +2,16 @@
 /* eslint-disable prettier/prettier */
 
 import React, { useEffect, Component } from 'react';
-import { View, Text, Button, Alert } from 'react-native';
-import styles from "./Cards/ContentStyle"
-import EventCard from "./Cards/ContentCard"
+import { View, Text, Button, Alert, FlatList, Dimensions } from 'react-native';
+import styles from "../Cards/ContentStyle"
+import EventCard from "../Cards/ContentCard"
 import { ScrollView } from 'react-native-gesture-handler';
 //import { withNavigation } from "@react-navigation/native";
-
+import AsyncStorage from '@react-native-community/async-storage';
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+const sizeH = HEIGHT / 100;
+const sizeW = WIDTH / 100;
 
 class Premium extends Component {
   constructor(props) {
@@ -17,26 +21,20 @@ class Premium extends Component {
       ev2: { sectionTitle: "St Patricks", sectionDescription: "Hazte un BEERLANDES y disfruta la beerlandesaen nuestros territorios. Ven adisfrutar del 13 al 17 de marzo.", place: "Lugar: Territorios pub beer", imageRoute: "http://www.gecsas.com.co/ImagesECommerce/Eventos/Evento2.png", registered: false },
       ev3: { sectionTitle: "Torneo FIFA", sectionDescription: "¡Vamos a ser los primeros en estrenar el juego #FIFA18, y por eso BEER y SoccerCup se unen para realizar el Torneo Nacional de a parejas mas grande de Colombia! ", place: "Lugar: Territorios pub beer", imageRoute: "http://www.gecsas.com.co/ImagesECommerce/Eventos/Evento3.png", registered: false },
       ev4: { sectionTitle: "Torneo Cervecero", sectionDescription: "¡HOY! Es la primera eliminatoria para el Campeonato Fondo Blanco, y celebrar el #DíaMundialDeLaCerveza ¡Los esperamos!", place: "Lugar: Territorios pub beer", imageRoute: "http://www.gecsas.com.co/ImagesECommerce/Eventos/Evento4.png", registered: false },
-      events: []
+      events: [],
+      products:[]
     }
   }
 
-  fetchEvents = () => {
-    var ev1 = this.state.ev1;
-    var ev2 = this.state.ev2;
-    var ev3 = this.state.ev3;
-    var ev4 = this.state.ev4;
-    var evs = [ev1, ev2, ev3, ev4];
-
+  fetchProducts = async () => {
+    const shopping = await AsyncStorage.getItem('shopping');
+    var shoppingC = JSON.parse(shopping)
     this.setState({
-      events: evs,
-    });
+        products: shoppingC
+    })
   }
-
   componentDidMount() {
-
-    this.fetchEvents();
-
+    this.fetchProducts();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -116,14 +114,23 @@ class Premium extends Component {
   render() {
     return (
       <>
-        <ScrollView style={styles.mainContainer}>
-          <Text style={styles.titleText}>Carrito de compras</Text>
-          {
-            this.state.events.map((props, index) =>
-              <EventCard sectionTitle={props.sectionTitle} sectionDescription={props.sectionDescription} place={props.place} imageRoute={props.imageRoute} onPress={() => this.onPress(props.sectionTitle)} registered={props.registered} key={index}></EventCard>
-            )
-          }
-        </ScrollView>
+        <Text style={styles.titleText}>Carrito de compras</Text>
+        <FlatList
+            nestedScrollEnabled={true}
+            style={{ marginTop: HEIGHT * 0.03 }}
+            data={this.state.products}
+            renderItem={({ item }) => (
+                <EventCard
+                    sectionTitle={item.name}
+                    sectionDescription={item.name}
+                    imageRoute={item.image}
+                    place={item.cantidad}
+                    nav={this.props}
+                />
+            )}
+            keyExtractor={item => item.id}
+        />
+        
       </>
     )
   }
