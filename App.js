@@ -1,11 +1,4 @@
 
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
 import Login from './components/Login/Login.js';
 import {
   Header,
@@ -21,9 +14,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Search from './Components/Search'
-import Profile from './Components/Profile'
-import Premium from './Components/Premium'
+import Search from './components/Search'
+
+import Profile from './components/Profile'
+import Premium from './components/Premium'
 
 function HomeScreen({ navigation }) {
   return (
@@ -37,29 +31,11 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function SearchScreen() {
-  return (<Search />)
-}
-
-function PremiumScreen() {
-  return(<Premium/>)
-}
-
-function ProfileScreen() {
-  return(<Profile/>)
-}
+function TabScreen({ navigation }) {
 
 const Tab = createMaterialBottomTabNavigator();
-
-function App() {
-
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
   return (
-    <NavigationContainer>
-      <Tab.Navigator
+    <Tab.Navigator
         initialRouteName="Home"
         activeColor="#EC40F0"
         inactiveColor="#EC40F0"
@@ -94,6 +70,36 @@ function App() {
             ),
           }} />
       </Tab.Navigator>
+  );
+}
+
+function SearchScreen() {
+  return (<Search />)
+}
+
+function PremiumScreen() {
+  return(<Premium/>)
+}
+
+function ProfileScreen() {
+  return(<Profile/>)
+}
+
+
+const Stack = createStackNavigator();
+
+function App() {
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Login} />
+        <Stack.Screen name="TabScreen" component={TabScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

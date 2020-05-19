@@ -34,11 +34,13 @@ class LogIn extends Component {
   }
 
   configureGoogleSign() {
-    Alert.alert('ejecutando config..')
     GoogleSignin.configure({
       webClientId: WEB_CLIENT_ID,
       offlineAccess: true
     })
+  }
+  moveOther(){
+    this.props.navigation.navigate('TabScreen');
   }
 
   signIn = async () => {
@@ -46,7 +48,7 @@ class LogIn extends Component {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       console.log(userInfo.user.email);
-      Alert.alert('hpta sirvio')
+      this.moveOther()
       this.setState({ userInfo });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
