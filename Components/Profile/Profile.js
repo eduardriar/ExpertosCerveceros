@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from 'react';
-import { View, Text, Button, FlatList, TouchableOpacity, Image, Dimensions, Linking } from 'react-native';
+import React, { useState, Component } from 'react';
+import { View, Text, Modal, FlatList, TouchableOpacity, Image, Dimensions, Linking } from 'react-native';
 import styles from './ProfileStyles';
 import { ScrollView } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,6 +18,7 @@ class Profile extends Component {
     super(props);
     this.state = {
       name: '',
+      modalVisible: false
     };
   }
 
@@ -61,9 +62,40 @@ class Profile extends Component {
           </View>
         </View>
         <View style={styles.menu}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text>Hello World!</Text>
+                <TouchableOpacity
+                  style={{ backgroundColor: "#2196F3" }}
+                  onPress={() => {
+                    this.setState({
+                      modalVisible: !this.state.modalVisible
+                    })
+                  }}
+                >
+                  <Text>Hide Modal</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
           <Text style={styles.name}>{this.state.name}</Text>
           <Text style={styles.menuText}> Tus Favoritos</Text>
-          <Text style={styles.menuText}> Beneficios Premium</Text>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({
+                modalVisible: !this.state.modalVisible
+              })
+            }}
+          >
+            <Text style={styles.menuText}> Beneficios Premium</Text>
+          </TouchableOpacity>
           <Text style={styles.menuText}> Síguenos en redes</Text>
           <View style={styles.socialMedia}>
             <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL('instagram://user?username=expertoscerveceros')}>
