@@ -7,13 +7,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from './components/Login/Login.js'
-import Search from './components/Search/Search'
-import Premium from './components/ShoppingCart/ShoppingCart.js'
-import Profile from './components/Profile/Profile'
-import Home from './components/Home/Home'
+import Login from './Components/Login/Login'
+import Search from './Components/Search/Search'
+import ShoppingCart from './Components/ShoppingCart/ShoppingCart'
+import Premium from './Components/Premium'
+import Profile from './Components/Profile/Profile'
+import Home from './Components/Home/Home'
 import AsyncStorage from '@react-native-community/async-storage';
-import Receipt from './components/Home/Recetas'
+import Receipt from './Components/Home/Recetas'
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -56,7 +57,7 @@ function HomeTab({ navigation }) {
             <MaterialCommunityIcons name="magnify" color={'#EC40F0'} size={26} />
           ),
         }} />
-      <Tab.Screen name="Premium" component={PremiumScreen}
+      <Tab.Screen name="Shopping cart" component={ShoppingCartScreen}
         options={{
           tabBarLabel: 'Compras',
           tabBarIcon: ({ color }) => (
@@ -72,6 +73,10 @@ function HomeTab({ navigation }) {
         }} />
     </Tab.Navigator>
   );
+}
+
+function ShoppingCartScreen(){
+  return(<ShoppingCart/>)
 }
 
 function PremiumScreen() {

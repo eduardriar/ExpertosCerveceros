@@ -13,7 +13,7 @@ const HEIGHT = Dimensions.get('window').height;
 const sizeH = HEIGHT / 100;
 const sizeW = WIDTH / 100;
 
-class Premium extends Component {
+class ShoppingCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -136,4 +136,4 @@ class Premium extends Component {
   }
 }
 
-export default Premium
+export default ShoppingCart
