@@ -29,7 +29,7 @@ const sizeW = WIDTH / 100;
 
 class LogIn extends Component {
   constructor(props) {
-    super(props);
+     super(props);
     this.state = {
       name: '',
       familyName: '',
@@ -38,6 +38,7 @@ class LogIn extends Component {
       isSigninInProgress: false
     };
     this.configureGoogleSign()
+    
   }
 
   configureGoogleSign() {
@@ -46,12 +47,10 @@ class LogIn extends Component {
       offlineAccess: true
     })
   }
-  moveOther(){
-    this.props.navigation.navigate('TabScreen');
-  }
 
   storeData = async () => {
     var userInfo = JSON.stringify(this.state)
+    console.log("this is "+ userInfo)
     try {
       await AsyncStorage.setItem('userInfo', userInfo)      
     } catch (e) {
@@ -63,11 +62,13 @@ class LogIn extends Component {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo.user);
+ 
+  
       Alert.alert('Bienvenido a Expertos Cerveceros');
       this.setState({ userInfo });   
+  
       //
-      //this.storeData()
+      this.storeData()
 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -91,9 +92,9 @@ class LogIn extends Component {
   };
 
   render() {
-    // const AuthContext = React.createContext();
-    // const {signIn} = React.useContext(AuthContext)
-    // onPress={() => this.signInGoogle().then(() => this.signIn(this.state) )}
+    //const AuthContext = React.createContext();
+    const {signIn} = React.useContext(this.props.context)
+  
     return (
       <View style={styles.loginContainer}>
         <View style={styles.textView}>
@@ -109,7 +110,7 @@ class LogIn extends Component {
             style={styles.GoogleButton}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Light}
-            onPress={() => console.log(this.props)}
+            onPress={() => this.signInGoogle().then(() => console.log(this.state))}
             disabled={this.state.isSigninInProgress} />
         </ScrollView>
       </View>
