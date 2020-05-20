@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect,useMemo,createContext,useReducer } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useEffect,useMemo,createContext,useReducer,useState } from 'react';
+import { View, Text, Button, Image,ScrollView} from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,8 +15,17 @@ import Profile from './Components/Profile/Profile'
 import Home from './Components/Home/Home'
 import AsyncStorage from '@react-native-community/async-storage';
 import Receipt from './Components/Home/Recetas'
+import LogoMorado from '../ExpertosCerveceros/assets/Images/IconoApp.png'
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
+import { WEB_CLIENT_ID } from './instances/Keys.js'
+import styles from './Components/Login/LoginStyles'
 
 const Tab = createMaterialBottomTabNavigator();
+const AuthContext = createContext();
 
 const HomeScreen = props => (
   <Home {...props} />
@@ -42,9 +51,89 @@ const ShoppingCartScreen = props => (
   <ShoppingCart {...props}/>
 );
 
-const LoginScreen = props => (
-  <Login {...props}/>
-);
+function LoginScreen(){
+  const [user,setUser]=useState({name: '',
+  familyName: '',
+  email: '',
+  password: '',
+  isSigninInProgress: false})
+
+  configureGoogleSign=()=> {
+    GoogleSignin.configure({
+      webClientId: WEB_CLIENT_ID,
+      offlineAccess: true
+    })
+  }
+
+  storeData = async () => {
+    var userInfo = JSON.stringify(user)
+
+    console.log("this is "+ userInfo)
+    try {
+      await AsyncStorage.setItem('userInfo', userInfo)      
+    } catch (e) {
+      // saving error
+    }
+  }
+useEffect(()=>{
+  signInGoogle = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+ 
+  
+      Alert.alert('Bienvenido a Expertos Cerveceros');
+      setUser({ userInfo });   
+  
+      //
+      this.storeData()
+
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+
+        Alert.alert('Process Cancelled')
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+
+        Alert.alert('Process in progress')
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+
+        Alert.alert('Play services are not available')
+      } else {
+        // some other error happened
+
+        Alert.alert('Something else went wrong... ', error.toString())
+      }
+    }
+  };
+})
+  
+const {signIn} = React.useContext(AuthContext)
+  return (
+    <View style={styles.loginContainer}>
+      <View style={styles.textView}>
+        <Image style={styles.LogoImage} source={LogoMorado} />
+      </View>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        style={styles.scrollView}>
+        <View style={styles.textView}>
+          <Text style={styles.textIntro}>Inicia sesión con Google para entrar en esta aventura cervecera</Text>
+        </View>
+        <GoogleSigninButton
+          style={styles.GoogleButton}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Light}
+          onPress={() => this.signInGoogle().then(() => console.log(user))}
+          disabled={user.isSigninInProgress} />
+      </ScrollView>
+    </View>
+  );
+
+}
+
 
 function HomeTab({ navigation }) {
   return(
@@ -185,7 +274,7 @@ export default function App() {
   }, 10000);
   
 }
-  const AuthContext = createContext();
+
 
   return (
     <AuthContext.Provider value={authContext}>
@@ -197,10 +286,9 @@ export default function App() {
             
           {state.userName == null ?   (
          
-            <Stack.Screen name="Login">
+            <Stack.Screen name="Login" component={LoginScreen}/>
+            
              
-              {props => <LoginScreen {...props  } />}
-            </Stack.Screen>
              
           ) : (
               <>
