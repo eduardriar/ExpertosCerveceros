@@ -11,11 +11,16 @@ const sizeH = HEIGHT / 100;
 const sizeW = WIDTH / 100;
 
 const styles = StyleSheet.create({
+  text:{
+    fontSize: sizeW * 4,
+    color: Colors.black,
+    fontFamily: 'Jost-Light',    
+    width: sizeW * 80
+  },
   imageBackground:{
     borderRadius: WIDTH * 0.05,
     width: WIDTH,
     height: sizeH * 50
-
   },
   viewContainer:{
     flexDirection: 'column',
@@ -78,7 +83,7 @@ const styles = StyleSheet.create({
     paddingTop: sizeH * 3
   },
   scrollView: { 
-    width: sizeH * 40,
+    width: sizeW * 80,
     height: sizeH * 30, 
     alignSelf: 'center', 
     flex: 1 

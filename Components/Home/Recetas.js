@@ -41,17 +41,17 @@ class Receipt extends Component {
             <ScrollView nestedScrollEnabled={true} style={styles.scrollView}>
               <Text style={styles.label}>INFROMACIÓN GENERAL</Text>
               <View style={styles.containerCards}>
-                <Text>{this.props.route.params.object.text}</Text>
+                <Text style={styles.text}>{this.props.route.params.object.text}</Text>
               </View>
               {this.props.route.params.object.type == 'Receta' ?
                 <View>
                   <Text style={styles.label}>NECESITAS: </Text>
                   <View style={styles.containerCards}>
-                    {this.props.route.params.object.ingredients.map(text => <Text>- {text}</Text>)}
+                    {this.props.route.params.object.ingredients.map(text => <Text style={styles.text}>- {text}</Text>)}
                   </View>
                   <Text style={styles.label}>PREPARACIÓN: </Text>
                   <View style={styles.containerCards}>
-                    {this.props.route.params.object.ingredients.map((text, index) => <Text>{index}. {text}</Text>)}
+                    {this.props.route.params.object.ingredients.map((text, index) => <Text style={styles.text}>{index}. {text}</Text>)}
                   </View>
                 </View> : <Text></Text> }
               <Text style={styles.label}>COMPARTE LA RECETA EN TUS REDES SOCIALES: </Text>

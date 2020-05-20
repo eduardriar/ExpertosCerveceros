@@ -17,6 +17,23 @@ const sizeH = HEIGHT / 100;
 const sizeW = WIDTH / 100;
 
 const styles = StyleSheet.create({
+  titleEmail:{
+    alignSelf:'center',
+    textAlign:'center',
+    marginTop: sizeH * 5,
+    fontSize: sizeW * 5,
+    color: Colors.black,
+    fontFamily: 'Raleway-Bold',
+  },
+  inputText:{
+    width: sizeW * 80,
+    height: sizeH * 5,
+    alignSelf: 'center',
+    textAlign:'center',
+    borderWidth: 1,
+    marginTop: sizeH * 2,
+    borderRadius: 10
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -25,11 +42,11 @@ const styles = StyleSheet.create({
   modalView: {
     height: sizeH * 70,
     width: sizeW * 95,
-    margin: 20,
+    // margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
+    // padding: 35,
+    // alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -39,13 +56,47 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5
   },
+  premium: {
+    fontSize: sizeW * 10,
+    color: Colors.black,
+    fontFamily: 'Satisfy-Regular',
+    marginTop: HEIGHT * 0.005,
+    textAlign:'center',
+    // marginLeft: sizeW * 15,
+    width: sizeW * 95
+  },
+  premiumText: {
+    fontSize: sizeW * 5,
+    color: Colors.black,
+    fontFamily: 'Jost-Light',
+    marginTop: HEIGHT * 0.005, 
+    alignSelf:'center',
+    textAlign:'center',
+    width: sizeW * 90
+  },
   socialMedia: {
     flex: 1,
     flexDirection: 'row',
     margin: sizeW * 2.5,
   },
+  button: {
+    borderRadius: sizeW* 2,
+    flex: 0.2,
+    alignSelf:'center',
+    marginTop: sizeH * 2.5,
+    backgroundColor: "#39CC7F",
+    width: sizeW * 30,
+    height: sizeH * 30,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  buttonText:{    
+    fontSize: sizeH * 2,
+    color: Colors.white,
+    fontFamily: 'Jost-Light',
+  },
   icon:{
-    margin: sizeW * 2.5,
+    margin: 0,
   },
   menu:{
     flex:1,
