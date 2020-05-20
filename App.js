@@ -34,6 +34,18 @@ const SearchScreen = props => (
   <Search {...props}/>
 );
 
+const PremiumScreen = props => (
+  <Premium {...props}/>
+);
+
+const ShoppingCartScreen = props => (
+  <ShoppingCart {...props}/>
+);
+
+const LoginScreen = props => (
+  <Login {...props}/>
+);
+
 function HomeTab({ navigation }) {
   return(
     <Tab.Navigator
@@ -73,18 +85,6 @@ function HomeTab({ navigation }) {
         }} />
     </Tab.Navigator>
   );
-}
-
-function ShoppingCartScreen(){
-  return(<ShoppingCart/>)
-}
-
-function PremiumScreen() {
-  return (<Premium />)
-}
-
-function LoginScreen() {
-  return (<Login />)
 }
 
 const Stack = createStackNavigator();
@@ -190,6 +190,7 @@ function App() {
               <>
                 <Stack.Screen name="Home" component={HomeTab} />
                 <Stack.Screen name="Receipt" component={ReceiptScreen}/>
+                <Stack.Screen name="Premium" component={PremiumScreen}/>
               </>
             )}
         </Stack.Navigator>

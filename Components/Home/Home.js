@@ -11,28 +11,13 @@ import styles from './HomeStyle';
 import Item from './Item';
 import { ScrollView } from 'react-native-gesture-handler';
 import { recetas } from './RecetasText';
+import {beers} from './BeerText';
+import {maridaje} from './MaridajeText'
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const sizeH = HEIGHT / 100;
 const sizeW = WIDTH / 100;
-
-const beer = [
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza1.png', name: 'Estrella Damm', id: '1' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza2.png', name: 'Marantá', id: '2' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza3.png', name: 'Becks', id: '3' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza4.png', name: 'Bitburger', id: '4' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza5.png', name: 'Maredsous', id: '5' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza6.png', name: 'Erdinger', id: '6' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza7.png', name: '3 Cordilleras', id: '7' }]
-
-const maridaje = [
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje1.png', name: 'Estrella Damm', id: '11' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje2.png', name: 'Estrella Damm', id: '12' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje3.png', name: 'Estrella Damm', id: '13' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje4.png', name: 'Estrella Damm', id: '14' },
-  { image: 'http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje5.png', name: 'Estrella Damm', id: '15' },
-]
 
 class Home extends Component {
   constructor(props) {
@@ -73,11 +58,12 @@ class Home extends Component {
                 nestedScrollEnabled={true}
                 style={{ marginTop: HEIGHT * 0.03 }}
                 horizontal={true}
-                data={beer}
+                data={beers}
                 renderItem={({ item }) => (
                   <Item
                     object={item}
                     nav={this.props}
+                    to={'Receipt'}
                   />
                 )}
                 keyExtractor={item => item.id}
@@ -94,6 +80,7 @@ class Home extends Component {
                   <Item
                     object={item}
                     nav={this.props}
+                    to={'Receipt'}
                   />
                 )}
                 keyExtractor={item => item.id}
@@ -102,7 +89,7 @@ class Home extends Component {
             <View style={styles.containerCards}>
               <Text style={styles.label}>RECETAS POPULARES</Text>
               <FlatList
-                style={{ marginTop: HEIGHT * 0.03, backgroundColor:'black' }}
+                style={{ marginTop: sizeH * 2}}
                 horizontal={false}
                 numColumns={'2'}
                 data={recetas}

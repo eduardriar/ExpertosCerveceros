@@ -77,7 +77,7 @@ class Search extends Component {
     const beerList = this.findRecipe(searchingBeer, 2);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
     return (
-        <View style={{ backgroundColor: '#574F7D' }}>
+        <View style={{ backgroundColor: '#574F7D', height: HEIGHT}}>
           <Text style={styles.title}>Buscar</Text>
           <ScrollView>
             <View style={styles.container}>
