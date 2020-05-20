@@ -2,12 +2,17 @@
 /* eslint-disable prettier/prettier */
 
 import React, { useEffect, Component } from 'react';
-import { View, Text, Button, Alert } from 'react-native';
+import { View, Text, Button, Alert, TouchableOpacity, Dimensions, } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from "./Cards/ContentStyle"
-import EventCard from "./Cards/ContentCard"
+import EventCard from "./Cards/EventCars.js"
 import { ScrollView } from 'react-native-gesture-handler';
 //import { withNavigation } from "@react-navigation/native";
 
+const { width: WIDTH } = Dimensions.get('window');
+const { height: HEIGHT } = Dimensions.get('window');
+const sizeH = HEIGHT / 100;
+const sizeW = WIDTH / 100;
 
 class Premium extends Component {
   constructor(props) {
@@ -117,7 +122,12 @@ class Premium extends Component {
     return (
       <>
         <ScrollView style={styles.mainContainer}>
-          <Text style={styles.titleText}>Carrito de compras</Text>
+          <TouchableOpacity style={styles.icon} onPress={() => {
+            this.props.navigation.goBack()
+          }}>
+            <MaterialCommunityIcons name="arrow-left" color={'#ffffff'} size={sizeH * 5} />
+          </TouchableOpacity>
+          <Text style={styles.titleText}> Eventos Premium</Text>
           {
             this.state.events.map((props, index) =>
               <EventCard sectionTitle={props.sectionTitle} sectionDescription={props.sectionDescription} place={props.place} imageRoute={props.imageRoute} onPress={() => this.onPress(props.sectionTitle)} registered={props.registered} key={index}></EventCard>

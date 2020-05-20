@@ -93,6 +93,7 @@ class LogIn extends Component {
   render() {
     // const AuthContext = React.createContext();
     // const {signIn} = React.useContext(AuthContext)
+    // onPress={() => this.signInGoogle().then(() => this.signIn(this.state) )}
     return (
       <View style={styles.loginContainer}>
         <View style={styles.textView}>
@@ -108,7 +109,7 @@ class LogIn extends Component {
             style={styles.GoogleButton}
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Light}
-            onPress={() => this.signInGoogle().then(() => this.signIn(this.state) )}
+            onPress={() => console.log(this.props)}
             disabled={this.state.isSigninInProgress} />
         </ScrollView>
       </View>

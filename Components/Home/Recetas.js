@@ -28,7 +28,14 @@ class Receipt extends Component {
     return (
       <View style={styles.sectionContainer}>
         <View style={styles.header}>
-          <ImageBackground source={{ uri: this.props.route.params.object.image }} style={styles.imageBackground} />
+          <View>
+            <ImageBackground source={{ uri: this.props.route.params.object.image }} style={styles.imageBackground} />
+            <TouchableOpacity style={{ position: 'absolute' }} onPress={() => {
+              this.props.navigation.goBack()
+            }}>
+              <MaterialCommunityIcons name="arrow-left" color={'#ffffff'} size={sizeH * 5} />
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={this.props.route.params.object.type == 'Receta' ? styles.titleView : this.props.route.params.object.type == 'Cerveza' ? styles.titleViewBeer : styles.titleViewMaridaje}>
           <View style={styles.expertosCerveceros}>
@@ -53,7 +60,7 @@ class Receipt extends Component {
                   <View style={styles.containerCards}>
                     {this.props.route.params.object.ingredients.map((text, index) => <Text style={styles.text}>{index}. {text}</Text>)}
                   </View>
-                </View> : <Text></Text> }
+                </View> : <Text></Text>}
               <Text style={styles.label}>COMPARTE LA RECETA EN TUS REDES SOCIALES: </Text>
               <View styles={styles.socialMedia}>
                 <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL('instagram://user?username=expertoscerveceros')}>

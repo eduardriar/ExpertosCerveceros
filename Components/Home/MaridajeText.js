@@ -2,7 +2,7 @@
 /* eslint-disable quotes */
 export const maridaje = [
   {
-    id: 1,
+    id: 6,
     type: "Maridaje",
     title: "Papas fritas con, QUESO Y TOCINETA",
     image: "http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje1.png" ,
@@ -11,7 +11,7 @@ export const maridaje = [
     steps: [""],
   },
   {
-    id: 2,
+    id: 7,
     type: "Maridaje",
     title: "Burrtos de, CARNE Y CAMARONES",
     image: "http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje2.png" ,
@@ -20,7 +20,7 @@ export const maridaje = [
     steps: [""],
   },
   {
-    id: 3,
+    id: 8,
     type: "Maridaje",
     title: "Pizza, NAPOLITANA",
     image: "http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje3.png" ,
@@ -29,7 +29,7 @@ export const maridaje = [
     steps: [""],
   },
   {
-    id: 4,
+    id: 9,
     type: "Cerveza",
     title: "Rollos de , LANGOSTA",
     image: "http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje4.png" ,
@@ -38,7 +38,7 @@ export const maridaje = [
     steps: [""],
   },
   {
-    id: 5,
+    id: 10,
     type: "Cerveza",
     title: "Sushi, ROLL",
     image: "http://www.gecsas.com.co/ImagesECommerce/Maridaje/Maridaje5.png" ,

@@ -17,13 +17,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Receipt from './Components/Home/Recetas'
 
 const Tab = createMaterialBottomTabNavigator();
+const AuthContext = React.createContext();
 
 const HomeScreen = props => (
   <Home {...props} />
 );
 
 const ReceiptScreen = props =>(
-  <Receipt {...props}/>
+  <Receipt {...props} context={AuthContext}/>
 );
 
 const ProfileScreen = props => (
@@ -43,7 +44,7 @@ const ShoppingCartScreen = props => (
 );
 
 const LoginScreen = props => (
-  <Login {...props}/>
+  <Login {...props} />
 );
 
 function HomeTab({ navigation }) {
@@ -173,7 +174,7 @@ function App() {
     []
   );
 
-  const AuthContext = React.createContext();
+  
 
   return (
     <AuthContext.Provider value={authContext}>

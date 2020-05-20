@@ -38,7 +38,7 @@ class Search extends Component {
     });
   }
 
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     this.recipeNBeerFetch();
   }
 

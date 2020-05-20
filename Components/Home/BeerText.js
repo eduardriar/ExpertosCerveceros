@@ -2,7 +2,7 @@
 /* eslint-disable quotes */
 export const beers = [
   {
-    id: 1,
+    id: 11,
     type: "Cerveza",
     title: "Estrella Damm",
     image: "http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza1.png" ,
@@ -11,7 +11,7 @@ export const beers = [
     steps: [""],
   },
   {
-    id: 2,
+    id: 12,
     type: "Cerveza",
     title: "Marantá",
     image: "http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza2.png" ,
@@ -20,7 +20,7 @@ export const beers = [
     steps: [""],
   },
   {
-    id: 3,
+    id: 13,
     type: "Cerveza",
     title: "Becks",
     image: "http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza3.png" ,
@@ -29,7 +29,7 @@ export const beers = [
     steps: [""],
   },
   {
-    id: 4,
+    id: 14,
     type: "Cerveza",
     title: "Bitburger",
     image: "http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza4.png" ,
@@ -38,7 +38,7 @@ export const beers = [
     steps: [""],
   },
   {
-    id: 5,
+    id: 15,
     type: "Cerveza",
     title: "Maredsous",
     image: "http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza5.png" ,
@@ -47,7 +47,7 @@ export const beers = [
     steps: [""],
   },
   {
-    id: 6,
+    id: 16,
     type: "Cerveza",
     title: "Erdinger",
     image: "http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza6.png" ,
@@ -56,7 +56,7 @@ export const beers = [
     steps: [""],
   },
   {
-    id: 6,
+    id: 17,
     type: "Cerveza",
     title: "3 Cordilleras",
     image: "http://www.gecsas.com.co/ImagesECommerce/Cerveza/Cerveza7.png" ,
