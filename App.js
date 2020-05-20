@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect } from 'react';
+import React, { useEffect,useMemo,createContext,useReducer } from 'react';
 import { View, Text, Button } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
@@ -89,8 +89,9 @@ function LoginScreen() {
 
 const Stack = createStackNavigator();
 
-function App() {
-  const [state, dispatch] = React.useReducer(
+export default function App() {
+  
+  const [state, dispatch] = useReducer(
     (prevState, action) => {
       switch (action.type) {
         case 'RESTORE_TOKEN':
@@ -120,7 +121,7 @@ function App() {
     }
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     SplashScreen.hide();
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
@@ -129,11 +130,16 @@ function App() {
 
       try {
         userInfo = await AsyncStorage.getItem('userInfo');
+       
         userName = JSON.parse(userInfo)
+        
+        
+        console.log("Hey the user is "+userName)
       } catch (e) {
         // Restoring token failed
-      }
+      
 
+      }
       // After restoring token, we may need to validate it in production apps
 
       // This will switch to the App screen or Auth screen and this loading
@@ -144,7 +150,7 @@ function App() {
     bootstrapAsync();
   }, []);
 
-  const authContext = React.useMemo(
+  const authContext = useMemo(
     () => ({
       signIn: async data => {
         // In a production app, we need to send some data (usually username, password) to server and get a token
@@ -154,7 +160,7 @@ function App() {
 
         let userInfo = await AsyncStorage.getItem('userInfo');
         let userName = JSON.parse(userInfo)
-
+        console.log("entra")
         dispatch({ type: 'SIGN_IN', token: userName });
       },
       signOut: () => dispatch({ type: 'SIGN_OUT' }),
@@ -172,20 +178,30 @@ function App() {
     }),
     []
   );
-
-  const AuthContext = React.createContext();
+ reRender=()=>{
+  setTimeout(() => {
+    dispatch({isLoading:false})
+  console.log(state.isLoading)            
+  }, 10000);
+  
+}
+  const AuthContext = createContext();
 
   return (
     <AuthContext.Provider value={authContext}>
-      {console.log(state.userName)}
+     
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerShown: false
         }}>
-          {state.userName == null ? (
+            
+          {state.userName == null ?   (
+         
             <Stack.Screen name="Login">
-              {props => <LoginScreen {...props} />}
+             
+              {props => <LoginScreen {...props  } />}
             </Stack.Screen>
+             
           ) : (
               <>
                 <Stack.Screen name="Home" component={HomeTab} />
@@ -198,4 +214,3 @@ function App() {
   );
 }
 
-export default App;
