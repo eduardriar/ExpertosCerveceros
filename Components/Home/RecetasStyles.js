@@ -3,13 +3,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable comma-dangle */
 import { Platform, Dimensions, StyleSheet, } from 'react-native'
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -97,6 +91,18 @@ const styles = StyleSheet.create({
   },
   titleView:{
     backgroundColor: '#FF0000',
+    borderTopRightRadius: WIDTH * 0.15,
+    borderTopLeftRadius: WIDTH * 0.15,
+    flex: 0.25,
+  },
+  titleViewBeer:{
+    backgroundColor: '#FFB400',
+    borderTopRightRadius: WIDTH * 0.15,
+    borderTopLeftRadius: WIDTH * 0.15,
+    flex: 0.25,
+  },
+  titleViewMaridaje:{
+    backgroundColor: '#39CC7F',
     borderTopRightRadius: WIDTH * 0.15,
     borderTopLeftRadius: WIDTH * 0.15,
     flex: 0.25,
