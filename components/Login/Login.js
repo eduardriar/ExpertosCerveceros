@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 import {
   StyleSheet,
   ScrollView,
@@ -16,7 +16,7 @@ import {
   GoogleSignin,
   GoogleSigninButton,
   statusCodes,
-} from '@react-native-community/google-signin';
+} from './node_modules/@react-native-community/google-signin';
 import { WEB_CLIENT_ID } from '../../instances/Keys.js'
 import AsyncStorage from '@react-native-community/async-storage';
 import { Colors } from 'react-native/Libraries/NewAppScreen';

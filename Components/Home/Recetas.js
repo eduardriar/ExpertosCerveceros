@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from 'react';
+import React, { useEffect, Component } from './node_modules/react';
 import { View, Text, Button, FlatList, TouchableOpacity, ImageBackground, Linking, Dimensions } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { NavigationContainer } from './node_modules/@react-navigation/native';
+import { createStackNavigator } from './node_modules/@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from './node_modules/@react-navigation/material-bottom-tabs'
+import MaterialCommunityIcons from './node_modules/react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import styles from './RecetasStyles'
 

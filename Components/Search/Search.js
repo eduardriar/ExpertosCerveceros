@@ -1,6 +1,6 @@
 /* eslint-disable eol-last */
 /* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 import {
   Dimensions, Alert, Text,
   View,
@@ -8,7 +8,7 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import Autocomplete from 'react-native-autocomplete-input';
+import Autocomplete from './node_modules/react-native-autocomplete-input';
 import styles from './SearchStyle';
 import Item from '../Home/Item';
 import { recetas } from '../Home/RecetasText';

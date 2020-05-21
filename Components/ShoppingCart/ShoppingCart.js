@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from 'react';
+import React, { useEffect, Component } from './node_modules/react';
 import { View, Text, Button, Alert, FlatList, Dimensions } from 'react-native';
 import styles from "./ContentStyle"
 import EventCard from "../Cards/ContentCard"
