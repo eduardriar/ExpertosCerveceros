@@ -28,13 +28,13 @@ class Profile extends Component {
       const userInfo = await AsyncStorage.getItem('userInfo')
       let userName = JSON.parse(userInfo)
       if (userInfo !== null) {
-        console.log(userName.userInfo.user.name)
+        console.log(userName.user)
         this.setState({
-          name: userName.userInfo.user.name,
+          name: userName.user.name,
         });
       }
     } catch (e) {
-      // error reading value
+      console.log(e)
     }
   }
 
@@ -114,7 +114,7 @@ class Profile extends Component {
           >
             <Text style={styles.menuText}> Beneficios Premium</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Premium')}>
+          <TouchableOpacity onPress={() => this.getData()}>
             <Text style={styles.menuText}> Eventos Premium</Text>
           </TouchableOpacity>
           <Text style={styles.menuText}> Síguenos en redes</Text>

@@ -21,8 +21,8 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-community/google-signin';
-import { WEB_CLIENT_ID } from './instances/Keys.js'
-import styles from './Components/Login/LoginStyles'
+import { WEB_CLIENT_ID } from './instances/Keys'
+import {styles} from './Components/Login/LoginStyles'
 
 const Tab = createMaterialBottomTabNavigator();
 const AuthContext = createContext();
@@ -50,89 +50,6 @@ const PremiumScreen = props => (
 const ShoppingCartScreen = props => (
   <ShoppingCart {...props} />
 );
-
-function LoginScreen() {
-  const [user, setUser] = useState({
-    name: '',
-    familyName: '',
-    email: '',
-    password: '',
-    isSigninInProgress: false
-  })
-
-  configureGoogleSign = () => {
-    GoogleSignin.configure({
-      webClientId: WEB_CLIENT_ID,
-      offlineAccess: true
-    })
-  }
-
-  storeData = async () => {
-    var userInfo = JSON.stringify(user)
-
-    console.log("this is " + userInfo)
-    try {
-      await AsyncStorage.setItem('userInfo', userInfo)
-    } catch (e) {
-      // saving error
-    }
-  }
-
-  useEffect(() => {
-    signInGoogle = async () => {
-      try {
-        await GoogleSignin.hasPlayServices();
-        const userInfo = await GoogleSignin.signIn();
-        Alert.alert('Bienvenido a Expertos Cerveceros');
-        setUser({ userInfo });
-        //
-        this.storeData()
-
-      } catch (error) {
-        if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-          // user cancelled the login flow
-
-          Alert.alert('Process Cancelled')
-        } else if (error.code === statusCodes.IN_PROGRESS) {
-          // operation (e.g. sign in) is in progress already
-
-          Alert.alert('Process in progress')
-        } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-          // play services not available or outdated
-
-          Alert.alert('Play services are not available')
-        } else {
-          // some other error happened
-
-          Alert.alert('Something else went wrong... ', error.toString())
-        }
-      }
-    };
-  })
-
-  const { signIn } = React.useContext(AuthContext)
-  return (
-    <View style={styles.loginContainer}>
-      <View style={styles.textView}>
-        <Image style={styles.LogoImage} source={LogoMorado} />
-      </View>
-      <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        style={styles.scrollView}>
-        <View style={styles.textView}>
-          <Text style={styles.textIntro}>Inicia sesión con Google para entrar en esta aventura cervecera</Text>
-        </View>
-        <GoogleSigninButton
-          style={styles.GoogleButton}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Light}
-          onPress={() => this.signInGoogle().then(() => console.log(user))}
-          disabled={user.isSigninInProgress} />
-      </ScrollView>
-    </View>
-  );
-}
-
 
 function HomeTab({ navigation }) {
   return (
@@ -172,6 +89,85 @@ function HomeTab({ navigation }) {
           ),
         }} />
     </Tab.Navigator>
+  );
+}
+
+function LoginScreen() {
+  const [user, setUser] = useState({
+    name: '',
+    familyName: '',
+    email: '',
+    password: '',
+    isSigninInProgress: false
+  })
+
+  function configureGoogleSign() {
+    GoogleSignin.configure({
+      webClientId: WEB_CLIENT_ID,
+      offlineAccess: true
+    })
+  }
+
+  async function storeData(user) {
+    var userInfo = JSON.stringify(user)
+    console.log("this is " + userInfo)
+    try {
+      await AsyncStorage.setItem('userInfo', userInfo)
+      console.log('Se guardo')
+    } catch (e) {
+      // saving error
+    }
+  }
+
+  async function signInGoogle(){
+    try {
+      configureGoogleSign()
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      storeData(userInfo)
+      Alert.alert('Bienvenido a Expertos Cerveceros');
+      // setUser({ userInfo });
+
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+
+        Alert.alert('Process Cancelled')
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+
+        Alert.alert('Process in progress')
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+
+        Alert.alert('Play services are not available')
+      } else {
+        // some other error happened
+        Alert.alert('Something else went wrong... ', error.toString())
+      }
+    }
+  };
+
+  const { signIn } = React.useContext(AuthContext)
+  return (
+    <View style={styles.loginContainer}>
+      <View style={styles.textView}>
+        <Image style={styles.LogoImage} source={LogoMorado} />
+      </View>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        style={styles.scrollView}>
+        <View style={styles.textView}>
+          <Text style={styles.textIntro}>Inicia sesión con Google para entrar en esta aventura cervecera</Text>
+        </View>
+        <GoogleSigninButton
+          style={styles.GoogleButton}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Light}
+          onPress={() => signInGoogle().then(()=> signIn({user}))}
+          disabled={user.isSigninInProgress} />
+      </ScrollView>
+    </View>
   );
 }
 
@@ -276,11 +272,7 @@ export default function App() {
         }}>
 
           {state.userName == null ? (
-
             <Stack.Screen name="Login" component={LoginScreen} />
-
-
-
           ) : (
               <>
                 <Stack.Screen name="Home" component={HomeTab} />
