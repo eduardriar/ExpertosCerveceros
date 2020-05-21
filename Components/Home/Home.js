@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from './node_modules/react';
-import { View, Text, Button, FlatList, SafeAreaView, Image, Dimensions,Alert } from 'react-native';
+import React, { useEffect, Component } from 'react';
+import { View, Text, Button, FlatList, SafeAreaView, Image, Dimensions, Alert, ListView } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from './node_modules/@react-navigation/native';
 import { createStackNavigator } from './node_modules/@react-navigation/stack';
@@ -11,8 +11,8 @@ import styles from './HomeStyle';
 import Item from './Item';
 import { ScrollView } from 'react-native-gesture-handler';
 import { recetas } from './RecetasText';
-import {beers} from './BeerText';
-import {maridaje} from './MaridajeText'
+import { beers } from './BeerText';
+import { maridaje } from './MaridajeText'
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -51,46 +51,19 @@ class Home extends Component {
           </View>
         </View>
         <View style={styles.containerScroll}>
-          <ScrollView nestedScrollEnabled={true} style={styles.scrollView}>
+          <ScrollView style={styles.scrollView}>
             <View style={styles.containerCards}>
               <Text style={styles.label}>LAS CERVEZAS DE NUESTRAS RECETAS</Text>
-              <FlatList
-                nestedScrollEnabled={true}
-                style={{ marginTop: HEIGHT * 0.03 }}
-                horizontal={true}
-                data={beers}
-                renderItem={({ item }) => (
-                  <Item
-                    object={item}
-                    nav={this.props}
-                    to={'Receipt'}
-                  />
-                )}
-                keyExtractor={item => item.id}
-              />
-            </View>
-            <View style={styles.containerCards}>
+              <ScrollView horizontal={true}>
+                {beers.map((item,index) => <Item object={item} nav={this.props} to={'Receipt'} key={index}/>)}
+              </ScrollView>
               <Text style={styles.label}>MARIDAJE</Text>
+              <ScrollView horizontal={true}>
+                {maridaje.map((item,index) => <Item object={item} nav={this.props} to={'Receipt'} key={index} />)}
+              </ScrollView>
+              <Text style={styles.label}>RECETAS</Text>
               <FlatList
-                nestedScrollEnabled={true}
-                style={{ marginTop: HEIGHT * 0.03 }}
-                horizontal={true}
-                data={maridaje}
-                renderItem={({ item }) => (
-                  <Item
-                    object={item}
-                    nav={this.props}
-                    to={'Receipt'}
-                  />
-                )}
-                keyExtractor={item => item.id}
-              />
-            </View>
-            <View style={styles.containerCards}>
-              <Text style={styles.label}>RECETAS POPULARES</Text>
-              <FlatList
-                style={{ marginTop: sizeH * 2}}
-                horizontal={false}
+                style={{ marginTop: sizeH * 2 }}
                 numColumns={'2'}
                 data={recetas}
                 renderItem={({ item }) => (
@@ -100,6 +73,7 @@ class Home extends Component {
                     nav={this.props}
                   />
                 )}
+                key={item => item.id}
                 keyExtractor={item => item.id}
               />
             </View>
