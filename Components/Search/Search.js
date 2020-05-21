@@ -134,20 +134,9 @@ class Search extends Component {
             </View>
             <View style={styles.container}>
               <Text style={styles.titleText}>Nuestras Recomendados</Text>
-              <FlatList
-                style={{ marginTop: HEIGHT * 0.03 }}
-                horizontal={false}
-                numColumns={'2'}
-                data={recetas}
-                renderItem={({ item }) => (
-                  <Item
-                    object={item}
-                    to={'Receipt'}
-                    nav={this.props}
-                  />
-                )}
-                keyExtractor={item => item.id}
-              />
+              <ScrollView horizontal={true}>
+                {recetas.map((item,index) => <Item object={item} nav={this.props} to={'Receipt'} key={index}/>)}
+              </ScrollView>
             </View>
           </ScrollView>
         </View>

@@ -124,34 +124,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   squareOne: {
-    width: WIDTH * 0.15,
-    height: WIDTH * 0.15,
+    width: sizeW * 15,
+    height: sizeW * 15,
     backgroundColor: '#27345A',
-    borderBottomLeftRadius: WIDTH * 0.05,
+    borderBottomLeftRadius: sizeW * 5,
     color: '#27345A'
   },
   squareTwo: {
-    width: WIDTH * 0.25,
-    height: WIDTH * 0.25,
+    width: sizeW * 25,
+    height: sizeW * 25,
     backgroundColor: '#4A5C94',
     color: '#4A5C94',
-    borderBottomLeftRadius: WIDTH * 0.05,
-    borderBottomRightRadius: WIDTH * 0.05
+    borderBottomLeftRadius: sizeW * 5,
+    borderBottomRightRadius: sizeW * 5
   },
   expertosCerveceros: {
-    marginTop: HEIGHT * 0.04,
+    marginTop: sizeH * 5,
     justifyContent: 'center',
     alignItems: 'center'
   },
   expertos: {
-    fontSize: WIDTH * 0.15,
+    fontSize: sizeW * 15,
     color: Colors.white,
     fontFamily: 'Satisfy-Regular',
-    marginTop: HEIGHT * 0.005,
     alignSelf: 'center'
   },
   cerveceros: {
-    fontSize: WIDTH * 0.07,
+    fontSize: sizeW * 7,
     color: Colors.white,
     fontFamily: 'Raleway-Black',
     alignSelf: 'center'

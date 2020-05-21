@@ -18,54 +18,54 @@ const sizeW = WIDTH / 100;
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: WIDTH * 0.035,
+    fontSize: sizeW * 4,
     color: '#B7B7B7',
     fontFamily: 'Raleway-SemiBold',
-    marginTop: HEIGHT * 0.005,
+    marginTop: sizeH * 1,
+    marginBottom: sizeH * 1
   },
   containerCards: {
-    marginTop: WIDTH * 0.1,
-    marginLeft: WIDTH * 0.05
+    marginTop: sizeW * 7,
+    marginLeft: sizeW * 7
   },
   square: {
     flexDirection: 'row'
   },
   squareOne: {
-    width: WIDTH * 0.15,
-    height: WIDTH * 0.15,
+    width: sizeW * 15,
+    height: sizeW * 15,
     backgroundColor: '#858585',
-    borderBottomLeftRadius: WIDTH * 0.05,
+    borderBottomLeftRadius: sizeW * 5,
     color: '#858585'
   },
   squareTwo: {
-    width: WIDTH * 0.25,
-    height: WIDTH * 0.25,
+    width: sizeW * 25,
+    height: sizeW * 25,
     backgroundColor: '#B7B7B7',
     color: '#B7B7B7',
-    borderBottomLeftRadius: WIDTH * 0.05,
-    borderBottomRightRadius: WIDTH * 0.05
+    borderBottomLeftRadius: sizeW * 5,
+    borderBottomRightRadius: sizeW * 5
   },
   expertosCerveceros: {
-    marginTop: HEIGHT * 0.04,
+    marginTop: sizeH * 5,
     justifyContent: 'center',
     alignItems: 'center'
   },
   expertos: {
-    fontSize: WIDTH * 0.15,
+    fontSize: sizeW * 15,
     color: Colors.white,
     fontFamily: 'Satisfy-Regular',
-    marginTop: HEIGHT * 0.005,
     alignSelf: 'center'
   },
   cerveceros: {
-    fontSize: WIDTH * 0.07,
+    fontSize: sizeW * 7,
     color: Colors.white,
     fontFamily: 'Raleway-Black',
     alignSelf: 'center'
   },
   header: {
     width: WIDTH,
-    height: HEIGHT * 0.25,
+    height: sizeH * 25,
     backgroundColor: '#302F28',
     flexDirection: 'row'
   },
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
   },
   containerScroll: {
     backgroundColor: '#F2F2F2',
-    borderTopRightRadius: WIDTH * 0.15,
-    borderTopLeftRadius: WIDTH * 0.15,
+    borderTopRightRadius: sizeW * 15,
+    borderTopLeftRadius: sizeW * 15,
     flex: 1,
     paddingBottom: sizeH * 6,
     paddingTop: sizeH * 3
