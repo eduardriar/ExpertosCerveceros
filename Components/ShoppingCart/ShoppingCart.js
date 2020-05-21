@@ -3,7 +3,7 @@
 
 import React, { useEffect, Component } from 'react';
 import { View, Text, Button, Alert, FlatList, Dimensions } from 'react-native';
-import styles from "../Cards/ContentStyle"
+import styles from "./ContentStyle"
 import EventCard from "../Cards/ContentCard"
 import { ScrollView } from 'react-native-gesture-handler';
 //import { withNavigation } from "@react-navigation/native";
