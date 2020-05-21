@@ -28,29 +28,39 @@ class Receipt extends Component {
     return (
       <View style={styles.sectionContainer}>
         <View style={styles.header}>
-          <ImageBackground source={{ uri: this.props.route.params.object.image }} style={styles.imageBackground} />
+          <View>
+            <ImageBackground source={{ uri: this.props.route.params.object.image }} style={styles.imageBackground} />
+            <TouchableOpacity style={{ position: 'absolute' }} onPress={() => {
+              this.props.navigation.goBack()
+            }}>
+              <MaterialCommunityIcons name="arrow-left" color={'#ffffff'} size={sizeH * 5} />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.titleView}>
+        <View style={this.props.route.params.object.type == 'Receta' ? styles.titleView : this.props.route.params.object.type == 'Cerveza' ? styles.titleViewBeer : styles.titleViewMaridaje}>
           <View style={styles.expertosCerveceros}>
             <Text style={styles.expertos}> {this.props.route.params.object.title.split(',')[0]}</Text>
             <Text style={styles.cerveceros}> {this.props.route.params.object.title.split(',')[1]}</Text>
           </View>
         </View>
-        <View style={{ backgroundColor: '#FF0000', flex: 1 }}>
+        <View style={this.props.route.params.object.type == 'Receta' ? { backgroundColor: '#FF0000', flex: 1 } : this.props.route.params.object.type == 'Cerveza' ? { backgroundColor: '#FFB400', flex: 1 } : { backgroundColor: '#39CC7F', flex: 1 }}>
           <View style={styles.containerScroll}>
             <ScrollView nestedScrollEnabled={true} style={styles.scrollView}>
               <Text style={styles.label}>INFROMACIÓN GENERAL</Text>
               <View style={styles.containerCards}>
-                <Text>{this.props.route.params.object.text}</Text>
+                <Text style={styles.text}>{this.props.route.params.object.text}</Text>
               </View>
-              <Text style={styles.label}>NECESITAS: </Text>
-              <View style={styles.containerCards}>
-                {this.props.route.params.object.ingredients.map(text => <Text>- {text}</Text>)}
-              </View>
-              <Text style={styles.label}>PREPARACIÓN: </Text>
-              <View style={styles.containerCards}>
-                {this.props.route.params.object.ingredients.map((text, index) => <Text>{index}. {text}</Text>)}
-              </View>
+              {this.props.route.params.object.type == 'Receta' ?
+                <View>
+                  <Text style={styles.label}>NECESITAS: </Text>
+                  <View style={styles.containerCards}>
+                    {this.props.route.params.object.ingredients.map(text => <Text style={styles.text}>- {text}</Text>)}
+                  </View>
+                  <Text style={styles.label}>PREPARACIÓN: </Text>
+                  <View style={styles.containerCards}>
+                    {this.props.route.params.object.ingredients.map((text, index) => <Text style={styles.text}>{index}. {text}</Text>)}
+                  </View>
+                </View> : <Text></Text>}
               <Text style={styles.label}>COMPARTE LA RECETA EN TUS REDES SOCIALES: </Text>
               <View styles={styles.socialMedia}>
                 <TouchableOpacity style={styles.icon} onPress={() => Linking.openURL('instagram://user?username=expertoscerveceros')}>

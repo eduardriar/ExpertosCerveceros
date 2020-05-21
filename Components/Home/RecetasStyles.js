@@ -3,13 +3,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable comma-dangle */
 import { Platform, Dimensions, StyleSheet, } from 'react-native'
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -17,11 +11,16 @@ const sizeH = HEIGHT / 100;
 const sizeW = WIDTH / 100;
 
 const styles = StyleSheet.create({
+  text:{
+    fontSize: sizeW * 4,
+    color: Colors.black,
+    fontFamily: 'Jost-Light',    
+    width: sizeW * 80
+  },
   imageBackground:{
     borderRadius: WIDTH * 0.05,
     width: WIDTH,
     height: sizeH * 50
-
   },
   viewContainer:{
     flexDirection: 'column',
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     paddingTop: sizeH * 3
   },
   scrollView: { 
-    width: sizeH * 40,
+    width: sizeW * 80,
     height: sizeH * 30, 
     alignSelf: 'center', 
     flex: 1 
@@ -97,6 +96,18 @@ const styles = StyleSheet.create({
   },
   titleView:{
     backgroundColor: '#FF0000',
+    borderTopRightRadius: WIDTH * 0.15,
+    borderTopLeftRadius: WIDTH * 0.15,
+    flex: 0.25,
+  },
+  titleViewBeer:{
+    backgroundColor: '#FFB400',
+    borderTopRightRadius: WIDTH * 0.15,
+    borderTopLeftRadius: WIDTH * 0.15,
+    flex: 0.25,
+  },
+  titleViewMaridaje:{
+    backgroundColor: '#39CC7F',
     borderTopRightRadius: WIDTH * 0.15,
     borderTopLeftRadius: WIDTH * 0.15,
     flex: 0.25,

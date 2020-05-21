@@ -1,28 +1,38 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useEffect, useMemo, createContext, useReducer, useState } from 'react';
+import { View, Text, Button, Image, ScrollView, Alert } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from './components/Login/Login.js'
-import Search from './components/Search/Search'
-import Premium from './components/ShoppingCart/ShoppingCart.js'
-import Profile from './components/Profile/Profile'
-import Home from './components/Home/Home'
+import Login from './Components/Login/Login'
+import Search from './Components/Search/Search'
+import ShoppingCart from './Components/ShoppingCart/ShoppingCart'
+import Premium from './Components/Premium'
+import Profile from './Components/Profile/Profile'
+import Home from './Components/Home/Home'
 import AsyncStorage from '@react-native-community/async-storage';
-import Receipt from './components/Home/Recetas'
+import Receipt from './Components/Home/Recetas'
+import LogoMorado from '../ExpertosCerveceros/assets/Images/IconoApp.png'
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
+import { WEB_CLIENT_ID } from './instances/Keys'
+import {styles} from './Components/Login/LoginStyles'
 
 const Tab = createMaterialBottomTabNavigator();
+const AuthContext = createContext();
 
 const HomeScreen = props => (
   <Home {...props} />
 );
 
-const ReceiptScreen = props =>(
-  <Receipt {...props}/>
+const ReceiptScreen = props => (
+  <Receipt {...props} context={AuthContext} />
 );
 
 const ProfileScreen = props => (
@@ -30,11 +40,19 @@ const ProfileScreen = props => (
 );
 
 const SearchScreen = props => (
-  <Search {...props}/>
+  <Search {...props} />
+);
+
+const PremiumScreen = props => (
+  <Premium {...props} />
+);
+
+const ShoppingCartScreen = props => (
+  <ShoppingCart {...props} />
 );
 
 function HomeTab({ navigation }) {
-  return(
+  return (
     <Tab.Navigator
       initialRouteName="Start"
       activeColor="#EC40F0"
@@ -56,7 +74,7 @@ function HomeTab({ navigation }) {
             <MaterialCommunityIcons name="magnify" color={'#EC40F0'} size={26} />
           ),
         }} />
-      <Tab.Screen name="Premium" component={PremiumScreen}
+      <Tab.Screen name="Shopping cart" component={ShoppingCartScreen}
         options={{
           tabBarLabel: 'Compras',
           tabBarIcon: ({ color }) => (
@@ -74,18 +92,90 @@ function HomeTab({ navigation }) {
   );
 }
 
-function PremiumScreen() {
-  return (<Premium />)
-}
-
 function LoginScreen() {
-  return (<Login />)
+  const [user, setUser] = useState({
+    name: '',
+    familyName: '',
+    email: '',
+    password: '',
+    isSigninInProgress: false
+  })
+
+  function configureGoogleSign() {
+    GoogleSignin.configure({
+      webClientId: WEB_CLIENT_ID,
+      offlineAccess: true
+    })
+  }
+
+  async function storeData(user) {
+    var userInfo = JSON.stringify(user)
+    console.log("this is " + userInfo)
+    try {
+      await AsyncStorage.setItem('userInfo', userInfo)
+      console.log('Se guardo')
+    } catch (e) {
+      // saving error
+    }
+  }
+
+  async function signInGoogle(){
+    try {
+      configureGoogleSign()
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      storeData(userInfo)
+      Alert.alert('Bienvenido a Expertos Cerveceros');
+      // setUser({ userInfo });
+
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+
+        Alert.alert('Process Cancelled')
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+
+        Alert.alert('Process in progress')
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+
+        Alert.alert('Play services are not available')
+      } else {
+        // some other error happened
+        Alert.alert('Something else went wrong... ', error.toString())
+      }
+    }
+  };
+
+  const { signIn } = React.useContext(AuthContext)
+  return (
+    <View style={styles.loginContainer}>
+      <View style={styles.textView}>
+        <Image style={styles.LogoImage} source={LogoMorado} />
+      </View>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        style={styles.scrollView}>
+        <View style={styles.textView}>
+          <Text style={styles.textIntro}>Inicia sesión con Google para entrar en esta aventura cervecera</Text>
+        </View>
+        <GoogleSigninButton
+          style={styles.GoogleButton}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Light}
+          onPress={() => signInGoogle().then(()=> signIn({user}))}
+          disabled={user.isSigninInProgress} />
+      </ScrollView>
+    </View>
+  );
 }
 
 const Stack = createStackNavigator();
 
-function App() {
-  const [state, dispatch] = React.useReducer(
+export default function App() {
+
+  const [state, dispatch] = useReducer(
     (prevState, action) => {
       switch (action.type) {
         case 'RESTORE_TOKEN':
@@ -115,7 +205,7 @@ function App() {
     }
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     SplashScreen.hide();
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
@@ -124,11 +214,16 @@ function App() {
 
       try {
         userInfo = await AsyncStorage.getItem('userInfo');
+
         userName = JSON.parse(userInfo)
+
+
+        console.log("Hey the user is " + userName)
       } catch (e) {
         // Restoring token failed
-      }
 
+
+      }
       // After restoring token, we may need to validate it in production apps
 
       // This will switch to the App screen or Auth screen and this loading
@@ -139,7 +234,7 @@ function App() {
     bootstrapAsync();
   }, []);
 
-  const authContext = React.useMemo(
+  const authContext = useMemo(
     () => ({
       signIn: async data => {
         // In a production app, we need to send some data (usually username, password) to server and get a token
@@ -149,7 +244,7 @@ function App() {
 
         let userInfo = await AsyncStorage.getItem('userInfo');
         let userName = JSON.parse(userInfo)
-
+        console.log("entra")
         dispatch({ type: 'SIGN_IN', token: userName });
       },
       signOut: () => dispatch({ type: 'SIGN_OUT' }),
@@ -168,23 +263,21 @@ function App() {
     []
   );
 
-  const AuthContext = React.createContext();
-
   return (
     <AuthContext.Provider value={authContext}>
-      {console.log(state.userName)}
+
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerShown: false
         }}>
+
           {state.userName == null ? (
-            <Stack.Screen name="Login">
-              {props => <LoginScreen {...props} />}
-            </Stack.Screen>
+            <Stack.Screen name="Login" component={LoginScreen} />
           ) : (
               <>
                 <Stack.Screen name="Home" component={HomeTab} />
-                <Stack.Screen name="Receipt" component={ReceiptScreen}/>
+                <Stack.Screen name="Receipt" component={ReceiptScreen} />
+                <Stack.Screen name="Premium" component={PremiumScreen} />
               </>
             )}
         </Stack.Navigator>
@@ -193,4 +286,3 @@ function App() {
   );
 }
 
-export default App;
