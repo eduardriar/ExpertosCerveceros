@@ -114,7 +114,7 @@ class Profile extends Component {
           >
             <Text style={styles.menuText}> Beneficios Premium</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.getData()}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Premium')}>
             <Text style={styles.menuText}> Eventos Premium</Text>
           </TouchableOpacity>
           <Text style={styles.menuText}> Síguenos en redes</Text>
