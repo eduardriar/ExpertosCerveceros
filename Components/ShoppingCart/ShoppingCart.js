@@ -1,11 +1,11 @@
 /* eslint-disable quotes */
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from './node_modules/react';
+import React, { useEffect, Component } from 'react';
 import { View, Text, Button, Alert, FlatList, Dimensions } from 'react-native';
 import styles from "./ContentStyle"
 import EventCard from "../Cards/ContentCard"
-import { ScrollView } from 'react-native-gesture-handler';
+// import { ScrollView } from 'react-native-gesture-handler';
 //import { withNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-community/async-storage';
 const WIDTH = Dimensions.get('window').width;
@@ -52,7 +52,7 @@ class ShoppingCart extends Component {
   render() {
     return (
       <>
-        <Text style={styles.titleTextShop}>Carrito de compras</Text>
+        <Text style={styles.titleText}>Carrito de compras</Text>
         <FlatList
           nestedScrollEnabled={true}
           style={{ marginTop: HEIGHT * 0.03 }}

@@ -1,9 +1,9 @@
 /* eslint-disable quotes */
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from './node_modules/react';
+import React, { useEffect, Component } from 'react';
 import { View, Text, Button, Alert, TouchableOpacity, Dimensions, } from 'react-native';
-import MaterialCommunityIcons from './node_modules/react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from "./Cards/ContentStyle"
 import EventCard from "./Cards/EventCars.js"
 import { ScrollView } from 'react-native-gesture-handler';
