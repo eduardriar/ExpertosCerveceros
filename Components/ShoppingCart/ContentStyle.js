@@ -19,7 +19,34 @@ const styles = StyleSheet.create({
     fontFamily: 'Satisfy-Regular',
     marginTop: sizeH * 2.5,
     alignSelf: 'center'
-  }
+  },
+  button: {
+    borderRadius: sizeW * 2,
+    flex: 0.2,
+    alignSelf:'center',
+    marginTop: sizeH * 2.5,
+    backgroundColor: "#39CC7F",
+    width: sizeW * 30,
+    height: sizeH * 4,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  otro:{
+
+    borderRadius: sizeW * 2,
+    backgroundColor: "#39CC7F",
+    alignSelf:'center',
+    height:sizeH * 4,
+    width: sizeW * 50,
+
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  buttonText:{    
+    fontSize: sizeH * 2,
+    color: Colors.white,
+    fontFamily: 'Jost-Light',
+  },
 });
 
 export default styles

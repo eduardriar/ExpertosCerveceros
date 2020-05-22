@@ -9,6 +9,8 @@ import { recetas } from './RecetasText';
 import { beers } from './BeerText';
 import { maridaje } from './MaridajeText'
 
+
+
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const sizeH = HEIGHT / 100;
@@ -35,7 +37,7 @@ class Home extends Component {
           <View style={styles.headerTop}>
             <View style={styles.expertosCerveceros}>
               <Text style={styles.expertos}> Expertos</Text>
-              <Text style={styles.cerveceros}> CERVECEROS</Text>
+              <Text style={styles.cerveceros}> cerveceros</Text>
             </View>
           </View>
           <View style={styles.headerBottom}>

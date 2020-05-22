@@ -7,6 +7,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import styles from "./Cards/ContentStyle"
 import EventCard from "./Cards/EventCars.js"
 import { ScrollView } from 'react-native-gesture-handler';
+import img from '../assets/image/Evento1.png'
+import img2 from '../assets/image/Evento2.png'
+import img3 from '../assets/image/Evento3.png'
+import img4 from '../assets/image/Evento4.png'
 //import { withNavigation } from "@react-navigation/native";
 
 const { width: WIDTH } = Dimensions.get('window');
@@ -18,10 +22,10 @@ class Premium extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ev1: { sectionTitle: "Conciertos", sectionDescription: "Nuestros territorios son rockeros y cerveceros, por eso nos amas.", place: "Lugar: Territorios pub beer", imageRoute: "http://www.gecsas.com.co/ImagesECommerce/Eventos/Evento1.png", registered: false },
-      ev2: { sectionTitle: "St Patricks", sectionDescription: "Hazte un BEERLANDES y disfruta la beerlandesaen nuestros territorios. Ven adisfrutar del 13 al 17 de marzo.", place: "Lugar: Territorios pub beer", imageRoute: "http://www.gecsas.com.co/ImagesECommerce/Eventos/Evento2.png", registered: false },
-      ev3: { sectionTitle: "Torneo FIFA", sectionDescription: "¡Vamos a ser los primeros en estrenar el juego #FIFA18, y por eso BEER y SoccerCup se unen para realizar el Torneo Nacional de a parejas mas grande de Colombia! ", place: "Lugar: Territorios pub beer", imageRoute: "http://www.gecsas.com.co/ImagesECommerce/Eventos/Evento3.png", registered: false },
-      ev4: { sectionTitle: "Torneo Cervecero", sectionDescription: "¡HOY! Es la primera eliminatoria para el Campeonato Fondo Blanco, y celebrar el #DíaMundialDeLaCerveza ¡Los esperamos!", place: "Lugar: Territorios pub beer", imageRoute: "http://www.gecsas.com.co/ImagesECommerce/Eventos/Evento4.png", registered: false },
+      ev1: { sectionTitle: "Conciertos", sectionDescription: "Nuestros territorios son rockeros y cerveceros, por eso nos amas.", place: "Lugar: Territorios pub beer", imageRoute: img, registered: false },
+      ev2: { sectionTitle: "St Patricks", sectionDescription: "Hazte un BEERLANDES y disfruta la beerlandesaen nuestros territorios. Ven adisfrutar del 13 al 17 de marzo.", place: "Lugar: Territorios pub beer", imageRoute: img2, registered: false },
+      ev3: { sectionTitle: "Torneo FIFA", sectionDescription: "¡Vamos a ser los primeros en estrenar el juego #FIFA18, y por eso BEER y SoccerCup se unen para realizar el Torneo Nacional de a parejas mas grande de Colombia! ", place: "Lugar: Territorios pub beer", imageRoute: img3, registered: false },
+      ev4: { sectionTitle: "Torneo Cervecero", sectionDescription: "¡HOY! Es la primera eliminatoria para el Campeonato Fondo Blanco, y celebrar el #DíaMundialDeLaCerveza ¡Los esperamos!", place: "Lugar: Territorios pub beer", imageRoute: img4, registered: false },
       events: []
     }
   }

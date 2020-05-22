@@ -25,7 +25,7 @@ class Receipt extends Component {
       <View style={styles.sectionContainer}>
         <View style={styles.header}>
           <View>
-            <ImageBackground source={{ uri: this.props.route.params.object.image }} style={styles.imageBackground} />
+            <ImageBackground source={this.props.route.params.object.image } style={styles.imageBackground} />
             <TouchableOpacity style={{ position: 'absolute' }} onPress={() => {
               this.props.navigation.goBack()
             }}>

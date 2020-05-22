@@ -3,7 +3,7 @@
 import React, { useState, Component } from 'react';
 import { View, Text, Modal, TextInput, TouchableOpacity, Image, Dimensions, Linking } from 'react-native';
 import styles from './ProfileStyles';
-// import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageGoodPeople from '../../assets/Images/Screenshot_20200329-114942_Instagram.png';
 import AsyncStorage from '@react-native-community/async-storage';
