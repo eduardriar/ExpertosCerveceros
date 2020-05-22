@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { Component } from './node_modules/react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   ScrollView,

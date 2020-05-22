@@ -1,13 +1,10 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from './node_modules/react';
-import { View, Text, Button, FlatList, TouchableOpacity, ImageBackground, StyleSheet, Dimensions, Alert } from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
-import { NavigationContainer } from './node_modules/@react-navigation/native';
-import { createStackNavigator } from './node_modules/@react-navigation/stack';
-import { createMaterialBottomTabNavigator } from './node_modules/@react-navigation/material-bottom-tabs'
-import MaterialCommunityIcons from './node_modules/react-native-vector-icons/MaterialCommunityIcons';
+import React, { useEffect, Component } from 'react';
+import { View, Text, Button, FlatList, TouchableOpacity, ImageBackground, StyleSheet, Dimensions, Alert, Image } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-community/async-storage';
+import ImageGoodPeople from '../../assets/Images/Screenshot_20200329-114942_Instagram.png';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -53,6 +50,7 @@ class Item extends Component {
                     shoppingC.filter(dpa => dpa.id === product.id && dpa["0"] !== "[")[0].cantidad + 1}));
                   this.addItem(newshopping)
                 }},
+                { text: 'Cancelar', onPress: () => {}},
             ],
             { cancelable: false },
           );
@@ -83,11 +81,10 @@ class Item extends Component {
     }
     //AsyncStorage.removeItem('shopping')
   }
-
   render() {
     return (
       <TouchableOpacity onPress={() => navCards(this.props.to,this.props.nav, this.props.object)} style={styles.card}>
-        <ImageBackground source={{ uri: this.props.object.image }} style={styles.img} imageStyle={{ borderRadius: WIDTH * 0.05 }}>
+        <ImageBackground source={this.props.object.image} style={styles.img} imageStyle={{ borderRadius: WIDTH * 0.05 }}>
           <TouchableOpacity style={styles.card} onPress={() => this.addShopping(this.props.object)} >
             <MaterialCommunityIcons name="cart" color={'#FFFFFF'} size={26} />
           </TouchableOpacity>

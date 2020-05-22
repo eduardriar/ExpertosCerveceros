@@ -7,7 +7,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from './Components/Login/Login'
 import Search from './Components/Search/Search'
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart'
 import Premium from './Components/Premium'

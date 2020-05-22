@@ -1,5 +1,5 @@
 /* eslint-disable semi */
-import React from './node_modules/react';
+import React from 'react';
 import {
   View,
   Text,
@@ -30,7 +30,7 @@ export default function ContentCard(props) {
     <View style={styles.sectionContainer}>
       <View style={styles.contentContainer}>
         <ImageBackground
-          source={{uri: props.imageRoute}}
+          source={props.imageRoute}
           style={styles.img}
           imageStyle={{borderRadius: 5}}
         />

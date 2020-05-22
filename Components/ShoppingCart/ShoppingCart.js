@@ -1,8 +1,8 @@
 /* eslint-disable quotes */
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from './node_modules/react';
-import { View, Text, Button, Alert, FlatList, Dimensions } from 'react-native';
+import React, { useEffect, Component } from 'react';
+import { View, Text, Button, Alert, FlatList, Dimensions,TouchableOpacity } from 'react-native';
 import styles from "./ContentStyle"
 import EventCard from "../Cards/ContentCard"
 import { ScrollView } from 'react-native-gesture-handler';
@@ -25,6 +25,7 @@ class ShoppingCart extends Component {
       products: []
     }
   }
+  
 
   fetchProducts = async () => {
     const shopping = await AsyncStorage.getItem('shopping');
@@ -33,8 +34,26 @@ class ShoppingCart extends Component {
       products: shoppingC
     })
   }
+  buy = async () => {
+    await AsyncStorage.removeItem('shopping');
+    Alert.alert(
+      '',
+      'La compra ha sido realizada con exito sus producto llegaran dento de 5 dias',
+      [
+          { text: 'Aceptar', onPress: () => {}},
+      ],
+      { cancelable: false },
+    );
+    this.fetchProducts()
+  }
   componentDidMount() {
     this.fetchProducts();
+
+    const {navigation} = this.props 
+    this._unsubscribe = navigation.addListener('focus', () => {
+      // do something
+      this.fetchProducts()
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,17 +69,25 @@ class ShoppingCart extends Component {
   }
 
   render() {
+    
+
     return (
-      <>
-        <Text style={styles.titleTextShop}>Carrito de compras</Text>
+      <View>
+
+        <Text style={styles.titleText}>Carrito de compras</Text>
+        <TouchableOpacity
+          style={styles.otro}
+          onPress={() => this.buy()}>
+          <Text style={styles.buttonText}>{"Realizar compra"}</Text>
+        </TouchableOpacity>
         <FlatList
           nestedScrollEnabled={true}
           style={{ marginTop: HEIGHT * 0.03 }}
           data={this.state.products}
           renderItem={({ item }) => (
             <EventCard
-              sectionTitle={item.name}
-              sectionDescription={item.name}
+              sectionTitle={item.title}
+              sectionDescription={item.title}
               imageRoute={item.image}
               place={item.cantidad}
               nav={this.props}
@@ -68,7 +95,8 @@ class ShoppingCart extends Component {
           )}
           keyExtractor={item => item.id}
         />
-      </>
+
+      </View>
     )
   }
 }

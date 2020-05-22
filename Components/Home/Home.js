@@ -2,17 +2,14 @@
 
 import React, { useEffect, Component } from 'react';
 import { View, Text, Button, FlatList, SafeAreaView, Image, Dimensions, Alert, ListView } from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
-import { NavigationContainer } from './node_modules/@react-navigation/native';
-import { createStackNavigator } from './node_modules/@react-navigation/stack';
-import { createMaterialBottomTabNavigator } from './node_modules/@react-navigation/material-bottom-tabs'
-import MaterialCommunityIcons from './node_modules/react-native-vector-icons/MaterialCommunityIcons';
 import styles from './HomeStyle';
 import Item from './Item';
 import { ScrollView } from 'react-native-gesture-handler';
 import { recetas } from './RecetasText';
 import { beers } from './BeerText';
 import { maridaje } from './MaridajeText'
+
+
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -40,7 +37,7 @@ class Home extends Component {
           <View style={styles.headerTop}>
             <View style={styles.expertosCerveceros}>
               <Text style={styles.expertos}> Expertos</Text>
-              <Text style={styles.cerveceros}> CERVECEROS</Text>
+              <Text style={styles.cerveceros}> cerveceros</Text>
             </View>
           </View>
           <View style={styles.headerBottom}>

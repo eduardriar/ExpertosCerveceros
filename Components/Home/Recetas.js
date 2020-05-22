@@ -1,12 +1,8 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, Component } from './node_modules/react';
+import React, { useEffect, Component } from 'react';
 import { View, Text, Button, FlatList, TouchableOpacity, ImageBackground, Linking, Dimensions } from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
-import { NavigationContainer } from './node_modules/@react-navigation/native';
-import { createStackNavigator } from './node_modules/@react-navigation/stack';
-import { createMaterialBottomTabNavigator } from './node_modules/@react-navigation/material-bottom-tabs'
-import MaterialCommunityIcons from './node_modules/react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 import styles from './RecetasStyles'
 
@@ -29,7 +25,7 @@ class Receipt extends Component {
       <View style={styles.sectionContainer}>
         <View style={styles.header}>
           <View>
-            <ImageBackground source={{ uri: this.props.route.params.object.image }} style={styles.imageBackground} />
+            <ImageBackground source={this.props.route.params.object.image } style={styles.imageBackground} />
             <TouchableOpacity style={{ position: 'absolute' }} onPress={() => {
               this.props.navigation.goBack()
             }}>
